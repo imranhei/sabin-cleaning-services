@@ -1,0 +1,3 @@
+# Cleaning Services App
+
+The Cleaning Services App is a user-friendly platform designed to connect customers with professional cleaning service providers. Users can easily browse available services, schedule appointments, and manage bookings. Service providers can manage their profiles, track appointments, and communicate with clients. The app aims to streamline the process of finding reliable cleaning solutions for homes and businesses, ensuring convenience, transparency, and quality service.
