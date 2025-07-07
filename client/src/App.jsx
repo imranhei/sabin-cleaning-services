@@ -1,8 +1,8 @@
 import "./App.css";
-import Home from "./pages/home.jsx";
 import { Route, Routes } from "react-router-dom";
+import Home from "./pages/home.jsx";
 import CheckAuth from "./components/common/CheckAuth";
-import Layout from "./components/common/layout";
+import Layout from "./components/common/Layout";
 import FAQs from "./pages/faqs";
 
 function App() {
