@@ -4,6 +4,8 @@ import Home from "./pages/home.jsx";
 import CheckAuth from "./components/common/CheckAuth";
 import Layout from "./components/common/Layout";
 import FAQs from "./pages/faqs";
+import About from "./pages/about";
+import Contact from "./pages/contact";
 
 function App() {
   const isAuthenticated = false;
@@ -15,6 +17,9 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/faqs" element={<FAQs />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          
         {/* <Route
           path="/"
           element={

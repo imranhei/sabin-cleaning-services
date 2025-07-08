@@ -14,7 +14,7 @@ const FAQs = () => {
 
   return (
     <div className="w-full min-h-[100vh] relative">
-      <div className="w-full h-80 top-0 left-0 bg-teal-500 flex justify-center relative">
+      <div className="w-full sm:h-60 h-40 top-0 left-0 bg-sky-800 flex justify-center relative">
         <div className="absolute max-w-7xl w-full ml-8 top-0 z-10">
           <RenderBreadcrumb items={breadcrumbData} />
         </div>

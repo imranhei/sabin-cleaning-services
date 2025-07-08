@@ -23,7 +23,7 @@ const Footer = () => {
           </h1>
         </div>
         <div className="flex flex-col gap-4 w-full">
-          <div className="flex justify-between gap-4 flex-1">
+          <div className="flex sm:flex-row flex-col justify-between gap-4 flex-1">
             <div className="flex items-center gap-2 text-muted-foreground">
               <span className="font-semibold">Call</span>
               <span className="bg-[#79c043] p-2 rounded-full text-white flex items-center gap-1">

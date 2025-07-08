@@ -23,6 +23,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useState } from "react";
 
 const Navbar = ({
   logo = {
@@ -111,6 +112,8 @@ const Navbar = ({
     phone: { title: "017 0000 0000", url: "#" },
   },
 }) => {
+  const [open, setOpen] = useState(false);
+
   return (
     <section className="fixed top-0 left-0 w-full z-50 py-4 bg-[#A4E2FA]">
       <div className="container max-w-7xl mx-auto px-4">
@@ -156,10 +159,10 @@ const Navbar = ({
               </span>
             </Link>
             <div className="flex items-center gap-2">
-              <Link to="#" className="bg-[#79c043] p-2 rounded text-white">
+              <a href="tel:+880123456789" className="bg-[#79c043] p-2 rounded text-white">
                 <Phone size={20} />
-              </Link>
-              <Sheet>
+              </a>
+              <Sheet open={open} onOpenChange={setOpen}>
                 <SheetTrigger asChild>
                   {/* <Button className="bg-transparent" variant="ghost" size="icon"> */}
                   <Menu className="size-9 bg-[#79c043] p-2 rounded text-white" />
@@ -192,6 +195,7 @@ const Navbar = ({
                       type="single"
                       collapsible
                       className="flex w-full flex-col gap-4"
+                      // onClick={() => setOpen(false)}
                     >
                       {menu.map((item) => renderMobileMenuItem(item))}
                     </Accordion>
