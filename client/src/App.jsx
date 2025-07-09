@@ -6,6 +6,8 @@ import Layout from "./components/common/Layout";
 import FAQs from "./pages/faqs";
 import About from "./pages/about";
 import Contact from "./pages/contact";
+import Services from "./pages/services";
+import Blogs from "./pages/blogs"
 
 function App() {
   const isAuthenticated = false;
@@ -19,6 +21,8 @@ function App() {
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/blogs" element={<Blogs />} />
           
         {/* <Route
           path="/"

@@ -1,4 +1,139 @@
-import { DollarSign, Grid2x2Check, ReceiptText, Heart } from "lucide-react";
+import {
+  DollarSign,
+  Grid2x2Check,
+  ReceiptText,
+  Heart,
+  BrushCleaning,
+  Bubbles,
+} from "lucide-react";
+
+export const menu = [
+  {
+    title: "About",
+    url: "about",
+  },
+  {
+    title: "Services",
+    url: "/services",
+    items: [
+      {
+        title: "End of Lease Cleaning",
+        url: "/services/end-of-lease-cleaning",
+      },
+      { title: "Bond Back Cleaning", url: "#" },
+      { title: "Move out Cleaning", url: "#" },
+      { title: "Carpet Cleaning", url: "#" },
+      { title: "Deep Cleaning", url: "#" },
+      { title: "Commercial Cleaning", url: "#" },
+      { title: "Tile and Grout Cleaning", url: "#" },
+      { title: "Acid wash", url: "#" },
+      { title: "Floor Polish", url: "#" },
+      { title: "Pressure Wash", url: "#" },
+      { title: "Driveway Wash", url: "#" },
+      { title: "Window Cleaning", url: "#" },
+    ],
+  },
+  {
+    title: "FAQs",
+    url: "/faqs",
+  },
+  {
+    title: "Blog",
+    url: "/blogs",
+  },
+  {
+    title: "Contact",
+    url: "/contact",
+  },
+];
+
+export const services = [
+  {
+    title: "End of Lease Cleaning",
+    url: "/services/end-of-lease-cleaning",
+    icon: BrushCleaning,
+    img: "https://fantasticservicesgroup.com.au/blog/wp-content/uploads/2019/11/End-of-lease-cleaning.jpg",
+    des: "Thorough cleaning to ensure full bond refund and landlord approval.",
+  },
+  {
+    title: "Bond Back Cleaning",
+    url: "#",
+    icon: Bubbles,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZJH6YxG69WIfAQW79Lyrn9p3fuWQFXR6nIQ&s",
+    des: "Complete cleaning to secure your bond refund and satisfy landlords.",
+  },
+  {
+    title: "Move out Cleaning",
+    url: "#",
+    icon: BrushCleaning,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6HPsyGLTzBgxIoqhhntAkMHcyBPhEvfIA4A&s",
+    des: "Thorough cleaning to prepare your home for final inspection and handover",
+  },
+  {
+    title: "Carpet Cleaning",
+    url: "#",
+    icon: Bubbles,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4E33ugF9lMQbgfRH5l7SKlBWGJ8_5BzQqOQ&s",
+    des: "Deep vacuuming and stain removal for fresh, clean, and allergen-free carpets.",
+  },
+  {
+    title: "Deep Cleaning",
+    url: "#",
+    icon: BrushCleaning,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTjD7SLWKViaMokw5OuoOHsTh6H-pv_5aWJQ&s",
+    des: "Intensive cleaning targeting hidden dirt and grime for a fresh home.",
+  },
+  {
+    title: "Commercial Cleaning",
+    url: "#",
+    icon: Bubbles,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSveMqyEkuR4a80bZJa_EwwtPlgwBUSvvIhRA&s",
+    des: "Professional cleaning services to maintain a clean, safe, and productive workspace.",
+  },
+  {
+    title: "Tile and Grout Cleaning",
+    url: "#",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1giYg24ve1cdG-hrKKWgdDyXgEJjMP81e5g&s",
+    des: "Expert cleaning to remove dirt and restore shine to tiles and grout.",
+  },
+  {
+    title: "Acid wash",
+    url: "#",
+    img: "https://lh7-rt.googleusercontent.com/docsz/AD_4nXc9rm1Y1QC1Mq_8LrAhifbCk0HPFjst6ccY9I1jApTV30Qr7C-NDuIGCaW1zPhzaeoi2-RL1VwN8N3U4jv_f_YyAWBAMaXuuqiunWatG6-tCqHr5v3_-OgSD0UQ55l9550jHTuZUA_EJKvqpGxe1BHbiG_e?key=AghiMV8s0oSTjC6PoPyMsQ",
+    des: "Powerful cleaning treatment to remove tough stains and buildup from surfaces.",
+  },
+  {
+    title: "Floor Polish",
+    url: "#",
+    img: "https://media.istockphoto.com/id/629481486/photo/man-polishing-marble-floor-in-modern-office-building.jpg?s=612x612&w=0&k=20&c=c4BoM221GSpj-gDxGv8_zK4GSFpzz9YGZkQIPrLNqK8=",
+    des: "Applying protective polish to restore shine and protect floors from wear.",
+  },
+  {
+    title: "Pressure Wash",
+    url: "#",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZjl37pJZ8nUMbNtmeeSj90QYG8qqaXRIUpg&s",
+    des: "High-pressure water cleaning to remove dirt, grime, and mold from surfaces.",
+  },
+  {
+    title: "Driveway Wash",
+    url: "#",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRZhg_uQBb5vPDpJeiaTOXh9YHzaUP5hvGUg&s",
+    des: "Thorough cleaning to remove oil stains, dirt, and debris from driveways.",
+  },
+  {
+    title: "Window Cleaning",
+    url: "#",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ970rQLe5PXW3QeAO5jAaWfNr-fLI6avK9OA&s",
+    des: "Streak-free cleaning to brighten windows and improve visibility inside and out.",
+  },
+];
+
+export const comments = [
+  {
+    text: "Awesome! It was such a relief to have my home clean. The women who cleaned were very nice and approachable. I'm already planning my next cleaning project.",
+    author: "Cindy Lowing",
+  },
+];
 
 export const Commitment = [
   {

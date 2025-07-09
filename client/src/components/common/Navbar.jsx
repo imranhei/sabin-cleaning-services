@@ -1,6 +1,7 @@
-import { Menu, Phone } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import site_logo from "../../../public/Sabin_Clean_Sky_blue.png";
+import { menu } from "@/config/constants";
 
 import {
   Accordion,
@@ -16,14 +17,15 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 const Navbar = ({
   logo = {
@@ -32,96 +34,20 @@ const Navbar = ({
     alt: "logo",
     title: "Sabin Cleaning Services",
   },
-  menu = [
-    {
-      title: "About",
-      url: "about",
-    },
-    {
-      title: "Services",
-      url: "/services",
-      items: [
-        {
-          title: "End of Lease Cleaning",
-          url: "/services/end-of-lease-cleaning",
-        },
-        {
-          title: "Bond Back Cleaning",
-          url: "#",
-        },
-        {
-          title: "Moving In And Out Cleaning",
-          url: "#",
-        },
-        {
-          title: "Carpet Cleaning",
-          url: "#",
-        },
-        {
-          title: "Deep Cleaning",
-          url: "#",
-        },
-        {
-          title: "Commercial Cleaning",
-          url: "#",
-        },
-        {
-          title: "Tile and Grout Cleaning",
-          url: "#",
-        },
-        {
-          title: "Acid wash",
-          url: "#",
-        },
-        {
-          title: "Floor Polish",
-          url: "#",
-        },
-        {
-          title: "Pressure Wash",
-          url: "#",
-        },
-        {
-          title: "Driveway Wash",
-          url: "#",
-        },
-        {
-          title: "Window Cleaning",
-          url: "#",
-        },
-        {
-          title: "Building & Brick Wall Cleaning",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "FAQs",
-      url: "/faqs",
-    },
-    {
-      title: "Blog",
-      url: "/blog",
-    },
-    {
-      title: "Contact",
-      url: "/contact",
-    },
-  ],
   contact = {
-    phone: { title: "017 0000 0000", url: "#" },
+    phone: { title: "+61 000 000 000", url: "#" },
   },
 }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="fixed top-0 left-0 w-full z-50 py-4 bg-[#A4E2FA]">
+    <section className="fixed top-0 left-0 w-full z-50 py-4 bg-[#A4E2FA] lg:h-[72px] h-[68px]">
       <div className="container max-w-7xl mx-auto px-4">
         {/* Desktop Menu */}
         <nav className="hidden justify-between lg:flex">
           {/* Logo */}
           <Link to={logo.url} className="flex items-center gap-2">
-            <img src={logo.src} className="max-h-10" alt={logo.alt} />
+            <img src={logo.src} className="max-h-8" alt={logo.alt} />
             <span className="text-lg font-semibold tracking-tighter">
               {logo.title}
             </span>
@@ -159,45 +85,43 @@ const Navbar = ({
               </span>
             </Link>
             <div className="flex items-center gap-2">
-              <a href="tel:+880123456789" className="bg-[#79c043] p-2 rounded text-white">
+              <a
+                href="tel:+880123456789"
+                className="bg-[#79c043] p-2 rounded text-white"
+              >
                 <Phone size={20} />
               </a>
-              <Sheet open={open} onOpenChange={setOpen}>
-                <SheetTrigger asChild>
-                  {/* <Button className="bg-transparent" variant="ghost" size="icon"> */}
-                  <Menu className="size-9 bg-[#79c043] p-2 rounded text-white" />
-                  {/* </Button> */}
-                </SheetTrigger>
-                <SheetContent
-                  className="overflow-y-auto h-screen bg-[#A4E2FA] p-4"
-                  side="top"
-                  pos="top-7 right-6"
-                >
-                  <SheetHeader>
-                    <SheetTitle>
-                      <Link
-                        to={logo.url}
-                        className="flex items-center gap-2 w-fit"
-                      >
-                        <img
-                          src={logo.src}
-                          className="max-h-8"
-                          alt={logo.alt}
-                        />
-                        <span className="text-lg font-semibold tracking-tighter">
-                          {logo.title}
-                        </span>
-                      </Link>
-                    </SheetTitle>
-                  </SheetHeader>
-                  <div className="flex flex-col gap-6 py-4">
+              <div className="relative size-9 cursor-pointer">
+                <Menu
+                  onClick={() => setOpen(true)}
+                  className={`absolute inset-0 size-9 bg-[#79c043] p-2 rounded text-white transition-all duration-300 ${
+                    open
+                      ? "opacity-0 scale-90 pointer-events-none"
+                      : "opacity-100 scale-100"
+                  }`}
+                />
+                <X
+                  onClick={() => setOpen(false)}
+                  className={`absolute inset-0 size-9 bg-[#79c043] p-2 rounded text-white transition-all duration-300 ${
+                    open
+                      ? "opacity-100 scale-100"
+                      : "opacity-0 scale-90 pointer-events-none"
+                  }`}
+                />
+              </div>
+              {open && (
+                <div className="fixed sm:top-[72px] top-[68px] left-0 w-full h-[calc(100vh-72px)] bg-[#A4E2FA] z-50 overflow-y-auto">
+                  <div className="flex flex-col gap-6 px-4 pb-6">
                     <Accordion
                       type="single"
                       collapsible
                       className="flex w-full flex-col gap-4"
-                      // onClick={() => setOpen(false)}
                     >
-                      {menu.map((item) => renderMobileMenuItem(item))}
+                      {menu.map((item) => (
+                        <div key={item.title} onClick={setOpen}>
+                          {renderMobileMenuItem(item)}
+                        </div>
+                      ))}
                     </Accordion>
 
                     <Button
@@ -212,8 +136,8 @@ const Navbar = ({
                       </div>
                     </Button>
                   </div>
-                </SheetContent>
-              </Sheet>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -227,7 +151,7 @@ const renderMenuItem = (item) => {
     return (
       <NavigationMenuItem key={item.title}>
         <NavigationMenuTrigger className="!bg-transparent font-semibold text-base z-50">
-          {item.title}
+          <Link to={item.url}>{item.title}</Link>
         </NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground">
           {item.items.map((subItem) => (

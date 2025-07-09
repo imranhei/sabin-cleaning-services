@@ -17,7 +17,7 @@ const Footer = () => {
     <div className="bg-[#dff2fa]">
       <div className="max-w-7xl mx-auto px-4 flex md:flex-row flex-col items-start gap-4 py-10">
         <div className="flex gap-2 items-center min-w-72">
-          <img src={webLogo} alt="" className="size-10" />
+          <img src={webLogo} alt="" className="size-8" />
           <h1 className="font-semibold text-muted-foreground">
             Sabin Cleaning Services
           </h1>
@@ -29,7 +29,7 @@ const Footer = () => {
               <span className="bg-[#79c043] p-2 rounded-full text-white flex items-center gap-1">
                 <Phone size={16} />
               </span>
-              <span className="font-bold">017 0000 0000</span>
+              <span className="font-bold">+61 000 000 000</span>
             </div>
             <div className="flex items-center gap-2">
               <QuoteModal>
