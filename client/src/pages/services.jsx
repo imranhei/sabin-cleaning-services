@@ -25,7 +25,7 @@ const Services = () => {
           {services?.map((service, index) => (
             <div
               key={index}
-              className="relative flex flex-col rounded-xl overflow-hidden w-60 h-96 shadow-lg hover:-mt-4 transform duration-300"
+              className="relative flex flex-col rounded-xl overflow-hidden sm:w-64 w-4/5 h-96 shadow-lg hover:-translate-y-2 transform duration-300"
             >
               <div className="h-1/2 w-full">
                 <img

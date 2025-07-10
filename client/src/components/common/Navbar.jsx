@@ -1,13 +1,10 @@
-import { Menu, Phone, X } from "lucide-react";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import site_logo from "../../../public/Sabin_Clean_Sky_blue.png";
 import { menu } from "@/config/constants";
 
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
+  Accordion
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,14 +15,6 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogClose,
-} from "@/components/ui/dialog";
 
 const Navbar = ({
   logo = {
@@ -110,17 +99,19 @@ const Navbar = ({
                 />
               </div>
               {open && (
-                <div className="fixed sm:top-[72px] top-[68px] left-0 w-full h-[calc(100vh-72px)] bg-[#A4E2FA] z-50 overflow-y-auto">
+                <div className="fixed top-[68px] left-0 w-full h-[calc(100vh-68px)] bg-[#A4E2FA] z-50 overflow-y-auto">
                   <div className="flex flex-col gap-6 px-4 pb-6">
                     <Accordion
                       type="single"
                       collapsible
-                      className="flex w-full flex-col gap-4"
+                      className="flex w-full flex-col gap-0"
                     >
                       {menu.map((item) => (
-                        <div key={item.title} onClick={setOpen}>
-                          {renderMobileMenuItem(item)}
-                        </div>
+                        <MobileMenuItem
+                          key={item.title}
+                          item={item}
+                          setOpen={setOpen}
+                        />
                       ))}
                     </Accordion>
 
@@ -176,34 +167,63 @@ const renderMenuItem = (item) => {
   );
 };
 
-const renderMobileMenuItem = (item) => {
+const MobileMenuItem = ({ item, setOpen }) => {
+  const [openAccordion, setOpenAccordion] = useState(false);
+
   if (item.items) {
     return (
-      <AccordionItem key={item.title} value={item.title} className="border-b-0">
-        <AccordionTrigger className="text-md py-0 px-0 bg-transparent [&[data-state=open]]:bg-[#ffffff00] [&[data-state=open]]:text-black [&[data-state=open]]:mb-2 [&[data-state=open]>svg]:text-muted-forground font-semibold hover:no-underline">
-          {item.title}
-        </AccordionTrigger>
-        <AccordionContent className="p-0">
-          {item.items.map((subItem) => (
-            <SubMenuLink key={subItem.title} item={subItem} />
-          ))}
-        </AccordionContent>
-      </AccordionItem>
+      <div className="w-full">
+        <div className="flex items-center justify-between py-2 font-semibold rounded">
+          <Link
+            to={item.url}
+            onClick={() => setOpen(false)}
+            className="text-md"
+          >
+            {item.title}
+          </Link>
+          <ChevronDown
+            className={`size-5 transition-transform duration-200 cursor-pointer ${
+              openAccordion ? "rotate-180" : ""
+            }`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpenAccordion(!openAccordion);
+            }}
+          />
+        </div>
+
+        {openAccordion && (
+          <div className="ml-4 mt-2">
+            {item.items.map((subItem) => (
+              <SubMenuLink
+                key={subItem.title}
+                item={subItem}
+                setOpen={setOpen}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     );
   }
 
   return (
-    <Link key={item.title} to={item.url} className="text-md font-semibold">
+    <Link
+      to={item.url}
+      className="text-md font-semibold block py-2"
+      onClick={() => setOpen(false)}
+    >
       {item.title}
     </Link>
   );
 };
 
-const SubMenuLink = ({ item }) => {
+const SubMenuLink = ({ item, setOpen }) => {
   return (
     <Link
       className="flex flex-row gap-4 p-2 leading-none no-underline transition-colors outline-none select-none bg-[#D2F2FC] hover:bg-white hover:text-accent-foreground w-full lg:w-80 border-b border-black/10"
       to={item.url}
+      onClick={() => setOpen(false)}
     >
       <div className="text-foreground">{item.icon}</div>
       <div>
