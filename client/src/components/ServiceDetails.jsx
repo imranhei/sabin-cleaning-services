@@ -134,7 +134,7 @@ const ServiceDetails = () => {
               Affordable Cleaning Solutions
             </h1>
             <p className="text-justify sm:leading-7">
-              365 Cleaners stand by its top-class bond-back cleaning service in
+              Sabin Cleaning Services stand by its top-class bond-back cleaning service in
               Australia without charging insane money. Regardless of the size of
               your property, our team remains dedicated to offer superior
               quality cleaning services within at the most affordable prices. We
