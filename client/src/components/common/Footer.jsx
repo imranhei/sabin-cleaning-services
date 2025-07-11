@@ -16,12 +16,12 @@ const Footer = () => {
   return (
     <div className="bg-[#dff2fa]">
       <div className="max-w-7xl mx-auto px-4 flex md:flex-row flex-col items-start gap-4 py-10">
-        <div className="flex gap-2 items-center min-w-72">
+        <Link to="/" className="flex gap-2 items-center min-w-72 pt-2">
           <img src={webLogo} alt="" className="size-8" />
           <h1 className="font-semibold text-muted-foreground">
             Sabin Cleaning Services
           </h1>
-        </div>
+        </Link>
         <div className="flex flex-col gap-4 w-full">
           <div className="flex sm:flex-row flex-col justify-between gap-4 flex-1">
             <div className="flex items-center gap-2 text-muted-foreground">
@@ -52,7 +52,7 @@ const Footer = () => {
                 <div className="grid lg:grid-cols-3 grid-cols-2 gap-2">
                   {link.items.map((item, idx) => (
                     <Link
-                      to={item.url}
+                      to={`/services/${item.url}`}
                       key={idx}
                       className="hover:text-[#79c043] cursor-pointer pt-2"
                     >

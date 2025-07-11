@@ -8,6 +8,9 @@ import About from "./pages/about";
 import Contact from "./pages/contact";
 import Services from "./pages/services";
 import Blogs from "./pages/blogs"
+import ScrollToTop from "./components/ScrollToTop";
+import ServiceDetails from "./components/ServiceDetails";
+import GoToTopButton from "./components/common/GoToTopButton";
 
 function App() {
   const isAuthenticated = false;
@@ -15,6 +18,8 @@ function App() {
 
   return (
     <div className="App">
+      <ScrollToTop />
+
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -22,6 +27,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/:slug" element={<ServiceDetails />} />
           <Route path="/blogs" element={<Blogs />} />
           
         {/* <Route
@@ -34,6 +40,8 @@ function App() {
         > */}
         </Route>
       </Routes>
+
+      <GoToTopButton />
     </div>
   );
 }

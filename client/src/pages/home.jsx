@@ -19,6 +19,13 @@ const Home = () => {
           alt="Hero Banner"
           className="absolute top-0 left-0 w-full h-full object-cover object-top z-0 brightness-50"
         />
+        <div className="absolute top-6 right-0 w-full">
+          <div className="container max-w-7xl flex justify-end mx-auto pr-4">
+            <span className="text-white font-semibold sm:text-lg">
+              ACN 682 730 196
+            </span>
+          </div>
+        </div>
         <div className="container max-w-7xl px-4 z-10 text-white space-y-6">
           <h1 className="lg:text-7xl sm:text-5xl text-4xl font-bold">
             Simplify Life.
@@ -60,6 +67,8 @@ const Home = () => {
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }, (_, index) => (
                   <Star
+                    key={index}
+                    stroke="#ffde05"
                     color="#ffde05"
                     fill="#ffde05"
                     strokeWidth={0.5}
@@ -83,15 +92,18 @@ const Home = () => {
             Professional residential and commercial cleaning service in Sydney,
             Australia.
           </h1>
-          <p className="text-muted-foreground">
-            Sabin Cleaning Service has the distinguished record of using
-            environmentally friendly cleaning products since our beginning in
-            the mid-'70s. We were eco-friendly before the recent popular trend
-            of all natural products.
+          <p className="text-muted-foreground text-justify">
+            Sabin Cleaning Service proudly combines over 20 years of team
+            expertise with a long-standing commitment to using environmentally
+            friendly cleaning products. We embraced eco-friendly practices well
+            before the recent trend toward all-natural products.
           </p>
           <div className="grid grid-cols-3 gap-4 mt-6">
             {services.slice(0, 6).map((service, index) => (
-              <div className="group p-4 bg-gray-100 hover:bg-[#79c043] duration-200 w-full aspect-square rounded-md flex flex-col items-center h-full justify-center gap-4">
+              <div
+                className="group p-4 bg-gray-100 hover:bg-[#79c043] duration-200 w-full aspect-square rounded-md flex flex-col items-center h-full justify-center gap-4"
+                key={index}
+              >
                 <service.icon className="sm:size-12 size-8 group-hover:text-white text-[#79c043] duration-200" />
                 <h1 className="uppercase sm:text-base text-sm text-center font-semibold text-muted-foreground group-hover:text-white duration-200">
                   {service.title}
@@ -110,26 +122,28 @@ const Home = () => {
       <div className="bg-gray-100">
         <div className="py-10 lg:flex lg:space-x-10 items-center max-w-7xl relative mx-auto px-4">
           <div className="flex flex-col gap-4">
-            <div className="flex gap-4 items-center">
+            <div className="flex sm:gap-4 gap-2 items-center">
               <img
                 src="https://cottagecare.com/wp-content/uploads/2022/09/power-icon.svg"
                 alt="spark"
+                className="sm:size-12 size-8"
               />
               <h1 className="sm:text-4xl text-2xl font-bold text-muted-foreground line-clamp-2">
-                Use Our Free Quote Tool
+                Call for Free Quote
               </h1>
             </div>
             <p className="text-muted-foreground text-justify">
-              Want to know how much it will cost to clean your home? Use our
-              quick and easy online quote tool. Don't waste time waiting for
-              someone to come to your home to give you an estimate. Simply enter
-              the size of your home, numbers of bedrooms and bathrooms, services
-              and frequency desired, and you'll receive a quote. No walkthroughs
-              are needed. We provide estimates solely on the rooms that you
-              select to be cleaned and the frequency of your cleaning. Both or
-              either of these can be changed, based on your needs.
+              Want to know how much it will cost to clean your home? Call us or
+              use our easy online quote tool - it's fast, simple, and
+              convenient. Don't waste time waiting for someone to come over just
+              to give you an estimate. Instead, just call or message us with the
+              size of your home, number of bedrooms and bathrooms, the services
+              you need, and how often you'd like them. We'll send you a quick
+              and accurate quote. No walkthroughs are required. We base our
+              estimates only on the rooms and services you choose, and both can
+              be updated anytime to suit your needs.
             </p>
-            <div className="flex flex-wrap items-center sm:gap-4 gap-2">
+            <div className="flex flex-wrap items-center sm:gap-4 gap-2 gap-y-4">
               <QuoteModal>
                 <Button className="bg-[#79c043] rounded-full px-12 py-6 text-base">
                   Get a Quote

@@ -145,8 +145,8 @@ const renderMenuItem = (item) => {
           <Link to={item.url}>{item.title}</Link>
         </NavigationMenuTrigger>
         <NavigationMenuContent className="bg-popover text-popover-foreground">
-          {item.items.map((subItem) => (
-            <Link asChild key={subItem.title} to={subItem.url} className="w-80">
+          {item.items.map((subItem, index) => (
+            <Link asChild key={index} to={`/services/${subItem.url}`} className="w-80">
               <SubMenuLink item={subItem} />
             </Link>
           ))}
@@ -194,9 +194,9 @@ const MobileMenuItem = ({ item, setOpen }) => {
 
         {openAccordion && (
           <div className="ml-4 mt-2">
-            {item.items.map((subItem) => (
+            {item.items.map((subItem, index) => (
               <SubMenuLink
-                key={subItem.title}
+                key={index}
                 item={subItem}
                 setOpen={setOpen}
               />
@@ -222,8 +222,8 @@ const SubMenuLink = ({ item, setOpen }) => {
   return (
     <Link
       className="flex flex-row gap-4 p-2 leading-none no-underline transition-colors outline-none select-none bg-[#D2F2FC] hover:bg-white hover:text-accent-foreground w-full lg:w-80 border-b border-black/10"
-      to={item.url}
-      onClick={() => setOpen(false)}
+      to={`/services/${item.url}`}
+      onClick={() => setOpen?.(false)}
     >
       <div className="text-foreground">{item.icon}</div>
       <div>

@@ -14,7 +14,7 @@ const Blogs = () => {
         </div>
         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-0">
           <h1 className="lg:text-6xl sm:text-4xl text-2xl text-white font-bold">
-            See Our Work in Motion
+            Our Experiences
           </h1>
         </div>
       </div>

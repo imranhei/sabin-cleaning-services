@@ -41,7 +41,7 @@ const Services = () => {
                 <h2 className="text-muted-foreground">{service.des || ""}</h2>
               </div>
               <Link
-                to={service.url}
+                to={`/services/${service.url}`}
                 className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
               >
                 <Button className="bg-[#79c043] rounded-full px-8 py-4 text-base">

@@ -19,17 +19,33 @@ const About = () => {
       </div>
       <div className="container mx-auto max-w-7xl flex sm:flex-row flex-col justify-between items-center gap-10 px-4 sm:py-20 py-10">
         <div className="sm:space-y-6 space-y-2 flex-1 min-w-60 text-muted-foreground">
-          <h1 className="sm:text-5xl text-3xl font-bold text-center text-sky-800">About Us</h1>
+          <h1 className="sm:text-5xl text-3xl font-bold text-center text-sky-800">
+            About Us
+          </h1>
           <p className="text-lf font-semibold text-center">
             We are here to make your life brighter
           </p>
         </div>
         <div className="text-justify sm:text-lg max-w-3xl text-muted-foreground">
-          At Australia Cleaning Services, we take pride in being a trusted provider of high-quality residential and commercial cleaning solutions. Operated under the umbrella of Sabin & Sidney Group Pty Ltd, our company brings a strong foundation of professionalism, consistency, and customer-focused service to every job.
-          <br /><br />
-          With over five years of experience in the cleaning industry, we have steadily expanded our service offerings and built long-lasting relationships with a growing number of satisfied clients. As a locally owned and operated business, we are deeply committed to supporting and uplifting our community.
-          <br /><br />
-          We view our customers not just as clients, but as neighbors - and we are dedicated to making a meaningful difference in their homes and workplaces through reliable, detailed, and efficient cleaning services. Furthermore, USA Cleaning Services is fully insured, reflecting our commitment to safety, accountability, and the highest standards of service quality.
+          At Sabin Cleaning Service, we proudly provide high-quality residential
+          and commercial cleaning services across Australia. As part of Sabin &
+          Sidney Group Pty Ltd, we are committed to delivering professional,
+          reliable, and detail-oriented cleaning solutions tailored to each
+          client's unique needs.
+          <br />
+          <br />
+          With over five years of company experience and a cleaning team with
+          more than 20 years of hands-on cleaning expertise, we've built a
+          strong reputation for excellence and customer satisfaction. Our
+          experienced team understands the importance of cleanliness, hygiene,
+          and trust and we bring those values to every job we complete.
+          <br />
+          <br />
+          As a locally owned and operated Australian business, we view our
+          clients as neighbors and partners in the community. Fully insured and
+          quality-focused, Sabin Cleaning Service is dedicated to maintaining
+          safe, spotless environments for homes and businesses across the
+          region.
         </div>
       </div>
     </div>

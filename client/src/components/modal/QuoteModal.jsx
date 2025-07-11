@@ -68,7 +68,7 @@ const QuoteModal = ({ children }) => {
                   />
                   <Input
                     type="email"
-                    placeholder="Email *"
+                    placeholder="Email"
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
