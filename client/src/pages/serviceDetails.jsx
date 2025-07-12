@@ -5,7 +5,7 @@ import { useBreadcrumbJson } from "@/hooks/useBreadcrumbJson";
 import RenderBreadcrumb from "@/components/common/RenderBreadcrumb";
 import { CircleCheckBig } from "lucide-react";
 
-const ServiceDetails = () => {
+const serviceDetails = () => {
   const breadcrumbData = useBreadcrumbJson();
   const { slug } = useParams();
   const [service, setService] = useState(null);
@@ -70,7 +70,7 @@ const ServiceDetails = () => {
       </div>
 
       <div className="max-w-7xl mx-auto my-10 ">
-        <div className="flex flex-col sm:flex-row-reverse shadow-md items-stretch mx-4">
+        <div className="flex flex-col sm:flex-row-reverse shadow-md items-stretch mx-4 border">
           <div className="sm:w-2/5">
             <img
               src="https://irp.cdn-website.com/7d0d0d3a/dms3rep/multi/eco+friendly+cleaning.jpeg"
@@ -96,7 +96,7 @@ const ServiceDetails = () => {
       </div>
 
       <div className="max-w-7xl mx-auto my-10 ">
-        <div className="flex sm:flex-row flex-col shadow-md items-stretch mx-4">
+        <div className="flex sm:flex-row flex-col shadow-md items-stretch mx-4 border">
           <div className="sm:w-2/5">
             <img
               src="https://hellamaid.ca/wp-content/uploads/2024/03/OOM-2024-03-07T120740.512.jpg"
@@ -121,7 +121,7 @@ const ServiceDetails = () => {
       </div>
 
       <div className="max-w-7xl mx-auto my-10 ">
-        <div className="flex flex-col sm:flex-row-reverse shadow-md items-stretch mx-4">
+        <div className="flex flex-col sm:flex-row-reverse shadow-md items-stretch mx-4 border">
           <div className="sm:w-2/5">
             <img
               src="https://naturalcarecleaningservice.com/wp-content/uploads/2024/03/Why-Choose-NaturalCare-Cleaning-Service-Over-DIY-Methods-scaled.jpg"
@@ -147,7 +147,7 @@ const ServiceDetails = () => {
       </div>
 
       <div className="max-w-7xl mx-auto my-10 ">
-        <div className="flex sm:flex-row flex-col shadow-md items-stretch mx-4">
+        <div className="flex sm:flex-row flex-col shadow-md items-stretch mx-4 border">
           <div className="sm:w-2/5">
             <img
               src="https://img.freepik.com/free-photo/medium-shot-workers-with-cleaning-cart_23-2149345519.jpg?semt=ais_hybrid&w=740"
@@ -174,4 +174,4 @@ const ServiceDetails = () => {
   );
 };
 
-export default ServiceDetails;
+export default serviceDetails;

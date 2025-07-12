@@ -9,11 +9,15 @@ import Contact from "./pages/contact";
 import Services from "./pages/services";
 import Blogs from "./pages/blogs"
 import ScrollToTop from "./components/ScrollToTop";
-import ServiceDetails from "./components/ServiceDetails";
+import ServiceDetails from "./pages/serviceDetails";
 import GoToTopButton from "./components/common/GoToTopButton";
+import Login from "./pages/login";
+import AdminLayout from "./components/AdminLayout";
+import Dashboard from "./pages/admin/dashboard";
+import BlogDetails from "./pages/blogDetails";
 
 function App() {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   const user = null;
 
   return (
@@ -29,6 +33,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetails />} />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogDetails />} />
           
         {/* <Route
           path="/"
@@ -39,6 +44,19 @@ function App() {
           }
         > */}
         </Route>
+
+        <Route
+          path="/admin"
+          element={
+            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+              <AdminLayout />
+            </CheckAuth>
+          }
+        >
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+        </Route>
+
+        <Route path="auth/login" element={<Login />} />
       </Routes>
 
       <GoToTopButton />

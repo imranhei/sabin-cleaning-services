@@ -76,7 +76,7 @@ export const services = [
     title: "Carpet Cleaning",
     url: "carpet-cleaning",
     icon: Bubbles,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4E33ugF9lMQbgfRH5l7SKlBWGJ8_5BzQqOQ&s",
+    img: "https://img.choice.com.au/-/media/74fe12e385064f56baa7164473f2ca20.ashx",
     des: "Deep vacuuming and stain removal for fresh, clean, and allergen-free carpets.",
     checklist: [
       "Inspect carpet condition and identify stains or high-traffic areas",
@@ -101,7 +101,7 @@ export const services = [
     title: "Deep Cleaning",
     url: "deep-cleaning",
     icon: BrushCleaning,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTjD7SLWKViaMokw5OuoOHsTh6H-pv_5aWJQ&s",
+    img: "https://msrservices.com.au/wp-content/uploads/bb-plugin/cache/Depositphotos_6153518_XL-scaled-landscape-feb002dbb564e0c79748aabb5bf27a98-61nmtru9b5hw.jpg",
     des: "Intensive cleaning targeting hidden dirt and grime for a fresh home.",
     checklist: [
       "Dust and cobweb ceilings, walls, vents, and light fixtures",
@@ -127,7 +127,7 @@ export const services = [
     title: "Commercial Cleaning",
     url: "commercial-cleaning",
     icon: Bubbles,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSveMqyEkuR4a80bZJa_EwwtPlgwBUSvvIhRA&s",
+    img: "https://www.maintenance-one.com/wp-content/uploads/2023/12/Essential-Tips-for-Choosing-the-Perfect-Commercial-Cleaning-Company-scaled.jpg",
     des: "Professional cleaning services to maintain a clean, safe, and productive workspace.",
     checklist: [
       "Empty all trash bins and replace liners",
@@ -153,7 +153,7 @@ export const services = [
     title: "Window Cleaning",
     url: "window-cleaning",
     icon: BrushCleaning,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ970rQLe5PXW3QeAO5jAaWfNr-fLI6avK9OA&s",
+    img: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/04/21/09/Window%20Cleaning.jpg",
     des: "Streak-free cleaning to brighten windows and improve visibility inside and out.",
     checklist: [
       "Inspect windows for cracks, chips, or damage",
@@ -230,7 +230,7 @@ export const services = [
     title: "Pressure Wash",
     url: "pressure-wash",
     icon: BrushCleaning,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZjl37pJZ8nUMbNtmeeSj90QYG8qqaXRIUpg&s",
+    img: "https://images.squarespace-cdn.com/content/v1/57aa6b9929687f3a42e94228/1487874036037-1YXUYQFF0WY8TU9B2T5H/pressure-washing.jpg",
     des: "High-pressure water cleaning to remove dirt, grime, and mold from surfaces.",
     checklist: [
       "Inspect the surface for cracks, damage, or fragile areas",
@@ -256,7 +256,7 @@ export const services = [
     title: "Driveway Wash",
     url: "driveway-wash",
     icon: BrushCleaning,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRZhg_uQBb5vPDpJeiaTOXh9YHzaUP5hvGUg&s",
+    img: "https://h2gomobilewash.com/app/uploads/2020/05/power-vs-pressure-washing-whats-the-difference.jpg",
     des: "Thorough cleaning to remove oil stains, dirt, and debris from driveways.",
     checklist: [
       "Inspect driveway surface for cracks, stains, or damage",
@@ -282,7 +282,7 @@ export const services = [
     title: "Tile and Grout Cleaning",
     url: "tile-and-grout-cleaning",
     icon: BrushCleaning,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1giYg24ve1cdG-hrKKWgdDyXgEJjMP81e5g&s",
+    img: "https://www.evergreencarpetcare.com/wp-content/uploads/2024/05/Top-5-Reasons-to-Opt-for-Professional-Tile-and-Grout-Cleaning-Services-blog-image.jpg",
     des: "Expert cleaning to remove dirt and restore shine to tiles and grout.",
     checklist: [
       
@@ -426,30 +426,35 @@ export const footerLinks = [
 
 export const blogs = [
   {
-    img: "https://images.ctfassets.net/5kq8dse7hipf/KHa0oMCFaYvOgKtI3cxhu/7d2340dff449f9d4f62f5e05f8643145/Featured-house-cleaning-cost.jpg?w=1024&fm=webp",
+    id: 1,
+    img: "https://weekendmaids.net/wp-content/uploads/2023/06/man-doing-professional-home-cleaning-service-1-1536x1024.jpg.webp",
     date: "June 18, 2025",
-    title: "3 Key Factors Influencing House Cleaning Costs - Must-Know!",
+    title: "Things To Do Before Moving Into Your New San Diego House",
     des: "House cleaning costs vary depending on three primary factors: If you have a smaller living space and hire a service for weekly cleaning, your average cost will prove much lower than a one-off cleaning of a large home with add-ons like fridge and oven cleaning. Here are some averages to give you a starting point",
   },
   {
+    id: 2,
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLtVFVTa3xKFuUPC6kWKqM5ra7XGyu36CY4Q&s",
     date: "June 17, 2025",
     title: "Pet Owners: 10 Benefits of Professional House Cleaning",
     des: "We love our pets! What a feeling it is to see your pup's tail wag when you walk through the door or hear the soothing purr of your cat curling up by your side. But as much as we love our furry friends, pet ownership comes with challenges, especially when it comes to keeping your",
   },
   {
+    id: 3,
     img: "https://media.angi.com/s3fs-public/female-janitor-vacuums-living-room.jpg",
     date: "June 05, 2025",
     title: "House Cleaning: 3 Best Ways to Prepare for the House Cleaner",
     des: "Hiring a professional house cleaning service can be a game-changer for keeping your home clean and organized. However, to maximize their visit, it's essential to prepare your space so they can focus on thorough house cleaning rather than basic tidying up. Here are the 3 best ways to prepare for your house cleaner's arrival",
   },
   {
+    id: 4,
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFDhGI_STI6snV9k09_CRqfbp8UE4Q3mGLaw&s",
     date: "May 30, 2025",
     title: "Home Cleaning Tips: Win the Battle Against Tulsa's 4 Seasons",
     des: "Each year, Tulsa's four seasons bring both beauty and challenges. While the weather showcases the magic of America's Heartland, it also introduces cleaning hurdles like dirt, dust, and allergens. Here's some cleaning tips to tackle these challenges season by season: 1. Winter: Snow, Mud, and Dirt on the Plains The Challenge:Tulsa winters are cold",
   },
   {
+    id: 5,
     img: "https://www.pristinehome.com.au/wp-content/uploads/2018/07/How-to-Choose-the-Best-House-Cleaning-Service.jpg",
     date: "March 04, 2025",
     title: "10 Tips: How to Choose the Best Home Cleaning Service for You",
