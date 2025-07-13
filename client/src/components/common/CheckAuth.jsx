@@ -1,7 +1,9 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const CheckAuth = ({ isAuthenticated, user, children }) => {
+const CheckAuth = ({ children }) => {
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const location = useLocation();
   const { pathname } = location;
   // Define routes accessible to all unauthenticated users

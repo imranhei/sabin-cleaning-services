@@ -81,10 +81,10 @@ const blogDetails = () => {
             </Button>
           </div>
         )}
-        {/* <RichTextEditor
+        <RichTextEditor
           value={formData.text}
           onChange={(html) => setFormData((prev) => ({ ...prev, text: html }))}
-        /> */}
+        />
       </div>
     </div>
   );

@@ -16,7 +16,6 @@ const initialstate = {
   phone: "",
   email: "",
   address: "",
-  date: "",
   msg: "",
 };
 
@@ -82,10 +81,9 @@ const QuoteModal = ({ children }) => {
                       setFormData({ ...formData, address: e.target.value })
                     }
                   />
-                  <Input type="date" placeholder="Select a date" />
                 </div>
                 <Textarea
-                  placeholder="Type your message here."
+                  placeholder="Type your message here. *"
                   className="min-h-24 max-h-48"
                   value={formData.msg}
                   onChange={(e) =>

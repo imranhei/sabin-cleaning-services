@@ -9,9 +9,12 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowBigLeft, ArrowLeft, Eye, EyeClosed } from "lucide-react";
+import { ArrowLeft, Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "@/redux/auth-slice";
+import { toast } from "sonner"
 
 const initialstate = {
   email: "",
@@ -19,12 +22,31 @@ const initialstate = {
 };
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isLodaing, error } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState(initialstate);
   const [show, setShow] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    if (!formData.email && !formData.password) {
+    toast("Please enter email and password");
+  } else if (!formData.email) {
+    toast("Please enter email");
+  } else if (!formData.password) {
+    toast("Please enter password");
+  } else {
+    try {
+      const result = await dispatch(login(formData)).unwrap();
+      toast.success("Login successful");
+      navigate("/admin/dashboard"); // You can navigate here if needed
+    } catch (error) {
+      // 👇 Show backend error from `res.data.message`
+      toast.error(error || "Login failed");
+    }
+  }
   };
 
   return (
