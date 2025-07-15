@@ -10,6 +10,10 @@ import { Input } from "../ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createQuote } from "@/redux/admin/quote-slice";
+import { toast } from "sonner";
+import { Loader } from "lucide-react";
 
 const initialstate = {
   name: "",
@@ -20,38 +24,51 @@ const initialstate = {
 };
 
 const QuoteModal = ({ children }) => {
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.quote);
   const [formData, setFormData] = useState(initialstate);
   const [open, setOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // You can handle form logic here (like sending data)
-    console.log("Form submitted", formData);
+    // Validate form data
+    if (!formData.name || !formData.phone) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
 
-    // Then close the modal
-    setOpen(false);
+    // Dispatch the createQuote action
+    dispatch(createQuote(formData)).then((res) => {
+      if (res.payload?.success) {
+        toast.success("Quote request sent successfully");
+        setOpen(false);
+      } else {
+        toast.error(res.payload || "Something went wrong");
+      }
+    });
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen} >
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-5xl max-w-full">
         <DialogHeader>
-          {/* <DialogTitle className="text-center hidden sm:block">Get a Quote</DialogTitle> */}
-          <DialogDescription>
+          <DialogTitle className="text-center hidden sm:block"></DialogTitle>
+          <form onSubmit={handleSubmit}>
             <div className="flex flex-col sm:flex-row justify-between items-center py-6 space-y-6">
               <div className="flex-1 text-center">
-                <h1 className="text-3xl font-bold text-primary">Get a Quote</h1>
-                <h5 className="text-muted-foreground text-base">
+                <p className="text-3xl font-bold text-primary">Get a Quote</p>
+                <p className="text-muted-foreground text-base">
                   Call for cleaning quotes
-                </h5>
+                </p>
               </div>
               <div className="felx flex-col space-y-2 sm:w-2/3 w-full">
                 <div className="grid grid-cols-2 gap-2">
                   <Input
                     type="text"
                     placeholder="Name *"
+                    required
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -60,6 +77,7 @@ const QuoteModal = ({ children }) => {
                   <Input
                     type="number"
                     placeholder="Phone *"
+                    required
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
@@ -90,12 +108,12 @@ const QuoteModal = ({ children }) => {
                     setFormData({ ...formData, msg: e.target.value })
                   }
                 />
-                <Button className="w-full bg-[#79c043]" onClick={handleSubmit}>
-                  Submit
+                <Button className="w-full bg-[#79c043]">
+                  {isLoading && <Loader className="mr-2 animate-spin" />}Submit
                 </Button>
               </div>
             </div>
-          </DialogDescription>
+          </form>
         </DialogHeader>
       </DialogContent>
     </Dialog>

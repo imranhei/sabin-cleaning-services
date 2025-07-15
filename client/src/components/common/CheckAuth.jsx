@@ -1,39 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAuth } from "@/redux/auth-slice";
+import { LoaderCircle } from "lucide-react";
 
 const CheckAuth = ({ children }) => {
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const { isAuthenticated, isLoadingAuth, authChecked, user } = useSelector(
+    (state) => state.auth
+  );
   const location = useLocation();
   const { pathname } = location;
-  // Define routes accessible to all unauthenticated users
-  const publicRoutes = ["/login"];
 
-  if (location.pathname === "/") {
-    if (!isAuthenticated) {
-      return <Navigate to="/" />;
-    } else {
-      if (user?.role === "admin") {
-        return <Navigate to="/admin/dashboard" />;
-      } else {
-        return <Navigate to="/" />;
-      }
+  useEffect(() => {
+    if (!authChecked) {
+      dispatch(checkAuth());
     }
+  }, [authChecked, dispatch]);
+
+  // ⏳ Still checking, don't render or redirect yet
+  if (!authChecked) {
+    return (
+      <div className="flex items-center justify-center min-w-screen min-h-screen">
+        <LoaderCircle size={48} className="animate-spin" />
+      </div>
+    );
   }
 
-  const authRoutes = ["admin"];
-  // check pathname includes any value of auth routes
-  const isAuthRoute = authRoutes.some((route) => pathname.includes(route));
-  if (!isAuthenticated && isAuthRoute) {
-    return <Navigate to="/auth/login" />;
-  }
-
-  if (isAuthenticated && pathname.includes("auth/login")) {
-    if (user?.role === "admin") {
-      return <Navigate to="/admin/dashboard" />;
-    } else {
-      return <Navigate to="/" />;
-    }
+  // 🔐 Not authenticated after checking
+  if (!isAuthenticated) {
+    return <Navigate to="/auth/login" state={{ from: pathname }} />;
   }
 
   return <>{children}</>;

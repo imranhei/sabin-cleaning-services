@@ -4,12 +4,12 @@ import { getQuotes } from "@/redux/admin/quote-slice";
 import SingleQuote from "@/components/SingleQuote";
 import AllQuotes from "@/components/AllQuotes";
 
-const Inbox = () => {
+const Favorite = () => {
   const dispatch = useDispatch();
   const { quote } = useSelector((state) => state.quote);
 
   useEffect(() => {
-    dispatch(getQuotes());
+    dispatch(getQuotes({ favorite: true }));
   }, [dispatch]);
 
   return (
@@ -20,4 +20,4 @@ const Inbox = () => {
   );
 };
 
-export default Inbox;
+export default Favorite;

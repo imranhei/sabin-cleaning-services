@@ -7,7 +7,7 @@ import FAQs from "./pages/faqs";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import Services from "./pages/services";
-import Blogs from "./pages/blogs"
+import Blogs from "./pages/blogs";
 import ScrollToTop from "./components/ScrollToTop";
 import ServiceDetails from "./pages/serviceDetails";
 import GoToTopButton from "./components/common/GoToTopButton";
@@ -16,11 +16,11 @@ import AdminLayout from "./components/AdminLayout";
 import Dashboard from "./pages/admin/dashboard";
 import BlogDetails from "./pages/blogDetails";
 import Inbox from "./pages/admin/inbox";
+import Favorite from "./pages/admin/favorite";
+import Trash from "./pages/admin/trash";
 import BlogPost from "./pages/admin/blogPost";
 
 function App() {
-  const isAuthenticated = true;
-  const user = null;
 
   return (
     <div className="App">
@@ -48,6 +48,8 @@ function App() {
         >
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="inbox" element={<Inbox />} />
+          <Route path="favorite" element={<Favorite />} />
+          <Route path="trash" element={<Trash />} />
           <Route path="blogs" element={<BlogPost />} />
         </Route>
 

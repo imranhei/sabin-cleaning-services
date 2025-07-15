@@ -44,16 +44,26 @@ export const createQuote = async (req, res) => {
 export const getQuotes = async (req, res) => {
   try {
     const trashed = req.query.trashed === "true";
+    const favoriteQuery = req.query.favorite;
 
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 20;
     const skip = (page - 1) * limit;
 
-    const quotes = await Quote.find({ isDeleted: trashed })
+    // Base filter
+    const filter = { isDeleted: trashed };
+
+    // If favorite param is provided, add it to the filter
+    if (favoriteQuery !== undefined) {
+      filter.favorite = favoriteQuery === "true"; // convert to boolean
+    }
+
+    const quotes = await Quote.find(filter)
       .select("-email -phone -address -note -isDeleted -deletedAt")
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
+
     res.status(200).json({ success: true, quotes });
   } catch (error) {
     console.error(error);
@@ -62,7 +72,7 @@ export const getQuotes = async (req, res) => {
 };
 
 export const getQuote = async (req, res) => {
-    console.log(req.params);
+  console.log(req.params);
   try {
     const { id } = req.params;
     const quote = await Quote.findById(id);
@@ -121,14 +131,7 @@ export const updateQuote = async (req, res) => {
 export const softDeleteQuote = async (req, res) => {
   try {
     const body = req.body || {};
-    const { id, ids } = body;
-
-    if (id) {
-      await Quote.findByIdAndUpdate(id, { isDeleted: true }, { new: true });
-      return res
-        .status(200)
-        .json({ success: true, message: "Quote deleted successfully" });
-    }
+    const { ids } = body;
 
     if (Array.isArray(ids) && ids.length > 0) {
       await Quote.updateMany({ _id: { $in: ids } }, { isDeleted: true });

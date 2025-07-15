@@ -43,7 +43,7 @@ const items = [
       },
       {
         title: "Favorite",
-        url: "/admin/favorates",
+        url: "/admin/favorite",
       },
       {
         title: "Trash",

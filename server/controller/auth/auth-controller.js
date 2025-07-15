@@ -44,7 +44,7 @@ export const login = async (req, res) => {
         .json({ success: false, message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ userId: user._id, email: user.email, name: user.name }, process.env.JWT_SECRET, {
       expiresIn: "30d",
     });
     res.status(200).json({
@@ -89,7 +89,7 @@ export const checkAuth = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = decoded.userId;
+    req.user = decoded;
     next();
   } catch (error) {
     return res.status(401).json({ success: false, message: "Unauthorized" });

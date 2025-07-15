@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/", checkAuth, getQuotes);
 router.get("/:id", checkAuth, getQuote);
 
-router.post("/", checkAuth, createQuote);
+router.post("/", createQuote);
 
 router.put("/soft-delete", checkAuth, softDeleteQuote);
 router.put("/recover", checkAuth, recoverQuote);

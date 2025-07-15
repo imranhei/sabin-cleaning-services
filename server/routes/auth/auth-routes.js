@@ -13,10 +13,10 @@ router.post("/register", register);
 router.post("/login", login);
 router.post("/logout", logout);
 router.get("/check-auth", checkAuth, (req, res) => {
-  const userId = req.userId;
+  const user = req.user;
   res
     .status(200)
-    .json({ success: true, message: "User authenticated", userId });
+    .json({ success: true, message: "User authenticated", user });
 });
 router.post("/reset-password", resetPassword);
 

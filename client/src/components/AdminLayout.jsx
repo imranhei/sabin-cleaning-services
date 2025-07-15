@@ -6,10 +6,20 @@ import {
   SidebarInset,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
+import { toast } from "sonner";
+import { resetTokenAndCredentials } from "../redux/auth-slice";
+import { useDispatch } from "react-redux";
+
 
 const AdminLayout = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(resetTokenAndCredentials());
+    toast.success("Logout successful");
+  };
+
   return (
     <SidebarProvider>
       {/* <div className="flex h-screen overflow-hidden"> */}
@@ -17,7 +27,7 @@ const AdminLayout = () => {
         <SidebarInset className="flex flex-col w-full overflow-hidden">
           <header className="flex justify-between h-[57px] shrink-0 items-center gap-2 border-b px-4">
             <SidebarTrigger className="-ml-1" />
-            <LogOut className="size-8 p-2 bg-gray-100 rounded" />
+            <LogOut className="size-8 p-2 bg-gray-100 rounded" onClick={handleLogout} />
           </header>
 
           {/* This part ensures scrollable content without horizontal overflow */}

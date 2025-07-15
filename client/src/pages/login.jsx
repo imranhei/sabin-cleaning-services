@@ -9,12 +9,12 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Eye, EyeClosed } from "lucide-react";
+import { ArrowLeft, Eye, EyeClosed, Loader } from "lucide-react";
 import { useState } from "react";
-import { data, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/redux/auth-slice";
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 const initialstate = {
   email: "",
@@ -24,35 +24,50 @@ const initialstate = {
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLodaing, error } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState(initialstate);
   const [show, setShow] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
+    // Input validation
     if (!formData.email && !formData.password) {
-    toast("Please enter email and password");
-  } else if (!formData.email) {
-    toast("Please enter email");
-  } else if (!formData.password) {
-    toast("Please enter password");
-  } else {
-    try {
-      const result = await dispatch(login(formData)).unwrap();
-      toast.success("Login successful");
-      navigate("/admin/dashboard"); // You can navigate here if needed
-    } catch (error) {
-      // 👇 Show backend error from `res.data.message`
-      toast.error(error || "Login failed");
+      toast.error("Please enter email and password");
+      return;
     }
-  }
+
+    if (!formData.email) {
+      toast.error("Please enter email");
+      return;
+    }
+
+    if (!formData.password) {
+      toast.error("Please enter password");
+      return;
+    }
+
+    try {
+      const result = dispatch(login(formData)).then((res) => {
+        if (res.payload?.success) {
+          toast.success("Login successful");
+          navigate("/admin/dashboard");
+        } else {
+          toast.error(res.payload || "Login failed");
+        }
+      });
+    } catch (error) {
+      toast.error(error.message || "Something went wrong");
+    }
   };
 
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 relative">
       <div className="absolute top-0 left-0 p-4">
-        <Link to="/" className="flex items-center gap-2" ><ArrowLeft className="size-4 cursor-pointer" />Home</Link>
+        <Link to="/" className="flex items-center gap-2">
+          <ArrowLeft className="size-4 cursor-pointer" />
+          Home
+        </Link>
       </div>
       <div className={cn("flex flex-col gap-6")}>
         <Card>
@@ -109,6 +124,7 @@ const Login = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <Button type="submit" className="w-full bg-[#79c043]">
+                    {isLoading && <Loader className="mr-2 animate-spin" />}
                     Login
                   </Button>
                 </div>
