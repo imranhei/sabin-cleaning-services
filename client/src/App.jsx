@@ -17,7 +17,7 @@ import Dashboard from "./pages/admin/dashboard";
 import BlogDetails from "./pages/blogDetails";
 import Inbox from "./pages/admin/inbox";
 import BlogPost from "./pages/admin/blogPost";
-import QuoteDetails from "./pages/admin/QuoteDetails";
+import QuoteDetails from "./pages/admin/quoteDetails";
 
 function App() {
   return (
