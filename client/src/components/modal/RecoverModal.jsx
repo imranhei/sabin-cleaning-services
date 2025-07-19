@@ -9,22 +9,23 @@ import {
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
-import { Loader, Trash2 } from "lucide-react";
+import { History, Loader, Trash2 } from "lucide-react";
 import { useState } from "react";
 import {
   softDeleteQuote,
   getQuotes,
   resetQuote,
+  recoverQuote,
 } from "@/redux/admin/quote-slice";
 import { useNavigate } from "react-router-dom";
 
-const DeleteModal = ({
+const RecoverModal = ({
   children,
   ids,
   setIds = () => {},
   resetIds = true,
   resetQut = false,
-  status = "all",
+  trashed = true,
   page = 1,
   limit = 20,
 }) => {
@@ -33,11 +34,11 @@ const DeleteModal = ({
   const { isLoading } = useSelector((state) => state.quote);
   const [open, setOpen] = useState(false);
 
-  const handleDelete = () => {
-    dispatch(softDeleteQuote(ids)).then((res) => {
+  const handleRecover = () => {
+    dispatch(recoverQuote(ids)).then((res) => {
       if (res.payload?.success) {
-        toast.success(res.payload?.message || "Quote deleted successfully");
-        dispatch(getQuotes({ status, page, limit }));
+        toast.success(res.payload?.message || "Quote recovered successfully");
+        dispatch(getQuotes({ trashed, page, limit }));
         setIds([]);
         resetQut && dispatch(resetQuote());
         setOpen(false);
@@ -62,15 +63,15 @@ const DeleteModal = ({
       <DialogContent className="sm:max-w-xl max-w-sm">
         <DialogHeader>
           <DialogTitle className="text-center hidden sm:block">
-            <div className="flex items-center justify-center mx-auto rounded-full size-20 bg-red-50">
-              <Trash2 className="text-red-500 size-10" />
+            <div className="flex items-center justify-center mx-auto rounded-full size-20 bg-green-100">
+              <History className="text-green-500 size-10" />
             </div>
           </DialogTitle>
           <DialogDescription className="text-center py-2 text-black/70 font-bold text-xl">
-            Delete Quote Request?
+            Recover Quote Request?
           </DialogDescription>
           <div className="text-center text-muted-foreground">
-            Are you sure you want to move this quote(s) request to the trash?
+            Are you sure you want to recover this quote?
           </div>
           <div className="flex items-center justify-center gap-4 pt-6">
             <Button
@@ -80,14 +81,14 @@ const DeleteModal = ({
                 resetIds && setIds([]);
               }}
             >
-              No, Keep It.
+              No, Cancel
             </Button>
             <Button
-              className="w-full bg-rose-400 hover:bg-rose-500 rounded-full"
-              onClick={handleDelete}
+              className="w-full bg-green-400 hover:bg-green-500 rounded-full"
+              onClick={handleRecover}
             >
-              {isLoading && <Loader className="mr-2 animate-spin" />}Yes,
-              Delete!
+              {isLoading && <Loader className="mr-2 animate-spin" />}
+              Yes, Recover
             </Button>
           </div>
         </DialogHeader>
@@ -96,4 +97,4 @@ const DeleteModal = ({
   );
 };
 
-export default DeleteModal;
+export default RecoverModal;

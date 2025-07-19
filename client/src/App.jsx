@@ -16,12 +16,10 @@ import AdminLayout from "./components/AdminLayout";
 import Dashboard from "./pages/admin/dashboard";
 import BlogDetails from "./pages/blogDetails";
 import Inbox from "./pages/admin/inbox";
-import Favorite from "./pages/admin/favorite";
-import Trash from "./pages/admin/trash";
 import BlogPost from "./pages/admin/blogPost";
+import QuoteDetails from "./pages/admin/QuoteDetails";
 
 function App() {
-
   return (
     <div className="App">
       <ScrollToTop />
@@ -48,8 +46,17 @@ function App() {
         >
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="inbox" element={<Inbox />} />
-          <Route path="favorite" element={<Favorite />} />
-          <Route path="trash" element={<Trash />} />
+          <Route path="inbox/:id" element={<QuoteDetails />} />
+          <Route
+            path="accepted"
+            element={<Inbox status="accepted" title="Accepted Quotes" />}
+          />
+          <Route path="accepted/:id" element={<QuoteDetails />} />
+          <Route
+            path="trash"
+            element={<Inbox trashed={true} title="Trash" />}
+          />
+          <Route path="trash/:id" element={<QuoteDetails />} />
           <Route path="blogs" element={<BlogPost />} />
         </Route>
 

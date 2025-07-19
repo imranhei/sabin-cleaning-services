@@ -31,14 +31,14 @@ const quoteSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    status: {
-      type: String,
-      enum: ["unread", "read"],
-      default: "unread",
-    },
-    favorite: {
+    isRead: {
       type: Boolean,
       default: false,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "accepted", "rejected"],
+      default: "pending",
     },
     isDeleted: {
       type: Boolean,

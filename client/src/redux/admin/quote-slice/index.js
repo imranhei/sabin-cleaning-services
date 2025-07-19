@@ -5,11 +5,12 @@ const initialState = {
   isLoading: false,
   quotes: [],
   quote: null,
+  totalCount: 0,
 };
 
 export const getQuotes = createAsyncThunk(
   "quote/get-quotes",
-  async ({ trashed = false, page = 1, limit = 20, favorite } = {}) => {
+  async ({ trashed = false, page = 1, limit = 20, status = "all" } = {}) => {
     const token = localStorage.getItem("token");
 
     const response = await axios.get(
@@ -22,7 +23,7 @@ export const getQuotes = createAsyncThunk(
           trashed,
           page,
           limit,
-          ...(favorite !== undefined && { favorite }),
+          status,
         },
       }
     );
@@ -57,9 +58,8 @@ export const createQuote = createAsyncThunk(
 
 export const updateQuote = createAsyncThunk(
   "quote/update-quote",
-  async (data) => {
+  async ({ id, ...data }) => {
     const token = localStorage.getItem("token");
-    const { id } = data;
     const response = await axios.put(
       `${import.meta.env.VITE_API_URL}/api/quote/${id}`,
       data,
@@ -93,12 +93,12 @@ export const softDeleteQuote = createAsyncThunk(
 
 export const recoverQuote = createAsyncThunk(
   "quote/recover-quote",
-  async ({ id, ids }) => {
+  async (ids) => {
     const token = localStorage.getItem("token");
 
     const response = await axios.put(
       `${import.meta.env.VITE_API_URL}/api/quote/recover`,
-      { id, ids },
+      { ids },
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -111,12 +111,12 @@ export const recoverQuote = createAsyncThunk(
 
 export const deleteQuote = createAsyncThunk(
   "quote/delete-quote",
-  async ({ id, ids }) => {
+  async (ids) => {
     const token = localStorage.getItem("token");
 
     const response = await axios.delete(
       `${import.meta.env.VITE_API_URL}/api/quote`,
-      { id, ids },
+      { ids },
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -132,6 +132,7 @@ const quoteSlice = createSlice({
   initialState,
   reducers: {
     resetQuote: (state) => {
+      state.isLoading = true;
       state.quote = null;
     },
   },
@@ -142,6 +143,7 @@ const quoteSlice = createSlice({
     builder.addCase(getQuotes.fulfilled, (state, action) => {
       state.isLoading = false;
       state.quotes = action.payload.quotes;
+      state.totalCount = action.payload.totalCount;
     });
     builder.addCase(getQuotes.rejected, (state) => {
       state.isLoading = false;
@@ -184,7 +186,6 @@ const quoteSlice = createSlice({
       // Update the quote in the list if it exists
       const index = state.quotes.findIndex((q) => q._id === updated._id);
       if (index !== -1) {
-        console.log("Updating in quotes list:", updated);
         state.quotes[index] = {
           ...state.quotes[index],
           ...updated,

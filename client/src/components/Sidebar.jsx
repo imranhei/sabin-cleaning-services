@@ -1,10 +1,4 @@
-import {
-  ChevronRight,
-  Home,
-  Inbox,
-  Settings,
-  NotebookPen
-} from "lucide-react";
+import { ChevronRight, Home, Inbox, Settings, NotebookPen } from "lucide-react";
 
 import {
   Sidebar,
@@ -24,6 +18,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Menu items.
 const items = [
@@ -42,8 +37,8 @@ const items = [
         url: "/admin/inbox",
       },
       {
-        title: "Favorite",
-        url: "/admin/favorite",
+        title: "Accepted",
+        url: "/admin/accepted",
       },
       {
         title: "Trash",
@@ -64,11 +59,19 @@ const items = [
 ];
 
 const AdminSidebar = () => {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <Sidebar>
-      <SidebarHeader className="font-semibold flex-row border-b p-4">
-        <img src="/Sabin_Clean_Sky_blue.png" alt="" className="w-6 h-6" />
-        Sabin Cleaning Services
+      <SidebarHeader className="font-semibold flex-col border-b p-4">
+        <div className="flex gap-2">
+          <img src="/Sabin_Clean_Sky_blue.png" alt="" className="w-6 h-6" />
+          Sabin Cleaning Services
+        </div>
+        <span className="text-sm text-center text-muted-foreground">
+          {" "}
+          Welcome, {user?.name}
+        </span>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroupContent>

@@ -44,7 +44,7 @@ export const createQuote = async (req, res) => {
 export const getQuotes = async (req, res) => {
   try {
     const trashed = req.query.trashed === "true";
-    const favoriteQuery = req.query.favorite;
+    const status = req.query.status;
 
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 20;
@@ -52,19 +52,18 @@ export const getQuotes = async (req, res) => {
 
     // Base filter
     const filter = { isDeleted: trashed };
+    if (status !== "all") filter.status = status;
 
-    // If favorite param is provided, add it to the filter
-    if (favoriteQuery !== undefined) {
-      filter.favorite = favoriteQuery === "true"; // convert to boolean
-    }
+    const [quotes, totalCount] = await Promise.all([
+      Quote.find(filter)
+        .select("-email -phone -address -isDeleted -deletedAt")
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit),
+      Quote.countDocuments(filter)
+    ]);
 
-    const quotes = await Quote.find(filter)
-      .select("-email -phone -address -note -isDeleted -deletedAt")
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit);
-
-    res.status(200).json({ success: true, quotes });
+    res.status(200).json({ success: true, quotes, totalCount });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Server error" });
@@ -72,7 +71,6 @@ export const getQuotes = async (req, res) => {
 };
 
 export const getQuote = async (req, res) => {
-  console.log(req.params);
   try {
     const { id } = req.params;
     const quote = await Quote.findById(id);
@@ -84,11 +82,11 @@ export const getQuote = async (req, res) => {
     }
 
     // If the quote is unread, mark it as read
-    if (quote.status === "unread") {
-      quote.status = "read";
+    if (quote.isRead === false) {
+      quote.isRead = true;
       await quote.save(); // Save the updated status
     }
-    console.log(quote);
+
     res.status(200).json({ success: true, quote });
   } catch (error) {
     console.error(error);
@@ -107,8 +105,8 @@ export const updateQuote = async (req, res) => {
     }
 
     // Add or update favorite status
-    if (req.body.favorite !== undefined) {
-      updateFields.favorite = req.body.favorite;
+    if (req.body.status !== undefined) {
+      updateFields.status = req.body.status;
     }
 
     const updatedQuote = await Quote.findByIdAndUpdate(id, updateFields, {
@@ -152,14 +150,7 @@ export const softDeleteQuote = async (req, res) => {
 export const recoverQuote = async (req, res) => {
   try {
     const body = req.body || {};
-    const { id, ids } = body;
-
-    if (id) {
-      await Quote.findByIdAndUpdate(id, { isDeleted: false }, { new: true });
-      return res
-        .status(200)
-        .json({ success: true, message: "Quote recovered successfully" });
-    }
+    const { ids } = body;
 
     if (Array.isArray(ids) && ids.length > 0) {
       await Quote.updateMany({ _id: { $in: ids } }, { isDeleted: false });
@@ -179,15 +170,7 @@ export const recoverQuote = async (req, res) => {
 
 export const deleteQuote = async (req, res) => {
   try {
-    const { id, ids } = req.body;
-
-    if (id) {
-      // Single delete
-      await Quote.findByIdAndDelete(id);
-      return res
-        .status(200)
-        .json({ success: true, message: "Quote deleted successfully" });
-    }
+    const { ids } = req.body;
 
     if (Array.isArray(ids) && ids.length > 0) {
       // Multiple delete
