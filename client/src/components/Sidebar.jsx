@@ -1,4 +1,4 @@
-import { ChevronRight, Home, Inbox, Settings, NotebookPen } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 import {
   Sidebar,
@@ -20,49 +20,13 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-// Menu items.
-const items = [
-  {
-    title: "Dashboard",
-    url: "/admin/dashboard",
-    icon: Home,
-  },
-  {
-    title: "Quotes",
-    url: "#",
-    icon: Inbox,
-    subMenus: [
-      {
-        title: "Inbox",
-        url: "/admin/inbox",
-      },
-      {
-        title: "Accepted",
-        url: "/admin/accepted",
-      },
-      {
-        title: "Trash",
-        url: "/admin/trash",
-      },
-    ],
-  },
-  {
-    title: "Blogs",
-    url: "/admin/blogs",
-    icon: NotebookPen,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-];
+import { AdminMenu } from "@/config/constants";
 
 const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const { pathname } = useLocation();
   const isMobile = useIsMobile();
   const { user } = useSelector((state) => state.auth);
+  const { unseen } = useSelector((state) => state.dashboard);
 
   const handleMenuItemClick = () => {
     if (isMobile) {
@@ -85,7 +49,7 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
       <SidebarContent>
         <SidebarGroupContent>
           <SidebarMenu>
-            {items.map((item) =>
+            {AdminMenu.map((item) =>
               item.subMenus?.length ? (
                 <Collapsible
                   key={item.title}
@@ -127,6 +91,9 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                 }`}
                               >
                                 <span>{subItem.title}</span>
+                                {subItem.title === "Inbox"
+                                  ? ` (${unseen})`
+                                  : ""}
                               </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>

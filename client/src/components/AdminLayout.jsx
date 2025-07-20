@@ -6,7 +6,7 @@ import {
   SidebarInset,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { LogOut } from "lucide-react";
+import { FileSpreadsheet, LogOut } from "lucide-react";
 import { toast } from "sonner";
 import { resetTokenAndCredentials } from "../redux/auth-slice";
 import { useDispatch } from "react-redux";
@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const AdminLayout = () => {
   const dispatch = useDispatch();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(FileSpreadsheet);
 
   const handleLogout = () => {
     dispatch(resetTokenAndCredentials());
@@ -23,7 +23,6 @@ const AdminLayout = () => {
 
   return (
     <SidebarProvider>
-      {/* <div className="flex h-screen overflow-hidden"> */}
       <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <SidebarInset className="flex flex-col w-full overflow-hidden">
         <header className="flex justify-between h-[57px] shrink-0 items-center gap-2 border-b px-4">
@@ -48,7 +47,6 @@ const AdminLayout = () => {
           <Outlet />
         </main>
       </SidebarInset>
-      {/* </div> */}
     </SidebarProvider>
   );
 };

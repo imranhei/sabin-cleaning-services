@@ -18,6 +18,7 @@ import BlogDetails from "./pages/blogDetails";
 import Inbox from "./pages/admin/inbox";
 import BlogPost from "./pages/admin/blogPost";
 import QuoteDetails from "./pages/admin/quoteDetails";
+import Calendar from "./pages/admin/calendar";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           }
         >
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="calendar" element={<Calendar />} />
           <Route path="inbox" element={<Inbox />} />
           <Route path="inbox/:id" element={<QuoteDetails />} />
           <Route

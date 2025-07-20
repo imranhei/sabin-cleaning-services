@@ -5,6 +5,11 @@ import {
   Heart,
   BrushCleaning,
   Bubbles,
+  CalendarDays,
+  Home,
+  Inbox,
+  Settings,
+  NotebookPen,
 } from "lucide-react";
 
 export const menu = [
@@ -42,6 +47,48 @@ export const menu = [
   {
     title: "Contact",
     url: "/contact",
+  },
+];
+
+export const AdminMenu = [
+  {
+    title: "Dashboard",
+    url: "/admin/dashboard",
+    icon: Home,
+  },
+  {
+    title: "Calendar",
+    url: "/admin/calendar",
+    icon: CalendarDays,
+  },
+  {
+    title: "Quotes",
+    url: "#",
+    icon: Inbox,
+    subMenus: [
+      {
+        title: "Inbox",
+        url: "/admin/inbox",
+      },
+      {
+        title: "Accepted",
+        url: "/admin/accepted",
+      },
+      {
+        title: "Trash",
+        url: "/admin/trash",
+      },
+    ],
+  },
+  {
+    title: "Blogs",
+    url: "/admin/blogs",
+    icon: NotebookPen,
+  },
+  {
+    title: "Settings",
+    url: "#",
+    icon: Settings,
   },
 ];
 
@@ -284,9 +331,7 @@ export const services = [
     icon: BrushCleaning,
     img: "https://www.evergreencarpetcare.com/wp-content/uploads/2024/05/Top-5-Reasons-to-Opt-for-Professional-Tile-and-Grout-Cleaning-Services-blog-image.jpg",
     des: "Expert cleaning to remove dirt and restore shine to tiles and grout.",
-    checklist: [
-      
-    ]
+    checklist: [],
   },
 ];
 
@@ -461,3 +506,18 @@ export const blogs = [
     des: "Finding the right home cleaning service isn't always easy. With so many options available, it can feel overwhelming to figure out which one is the best fit for your unique needs. But don't worry! We're here to guide you through the process with these 10 practical tips. Whether you're searching for a one-time deep clean",
   },
 ];
+
+export const dummyChartData = [
+  { "month": "January", "accepted": 3, "rejected": 1, "pending": 2 },
+  { "month": "February", "accepted": 2, "rejected": 2, "pending": 1 },
+  { "month": "March", "accepted": 4, "rejected": 0, "pending": 3 },
+  { "month": "April", "accepted": 5, "rejected": 1, "pending": 2 },
+  { "month": "May", "accepted": 2, "rejected": 3, "pending": 1 },
+  { "month": "June", "accepted": 3, "rejected": 2, "pending": 2 },
+  { "month": "July", "accepted": 2, "rejected": 1, "pending": 1 },
+  { "month": "August", "accepted": 4, "rejected": 2, "pending": 0 },
+  { "month": "September", "accepted": 3, "rejected": 1, "pending": 2 },
+  { "month": "October", "accepted": 2, "rejected": 0, "pending": 3 },
+  { "month": "November", "accepted": 5, "rejected": 1, "pending": 1 },
+  { "month": "December", "accepted": 4, "rejected": 2, "pending": 1 }
+]

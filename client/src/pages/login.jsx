@@ -17,7 +17,7 @@ import { login } from "@/redux/auth-slice";
 import { toast } from "sonner";
 
 const initialstate = {
-  email: "",
+  username: "",
   password: "",
 };
 
@@ -32,13 +32,13 @@ const Login = () => {
     e.preventDefault();
 
     // Input validation
-    if (!formData.email && !formData.password) {
-      toast.error("Please enter email and password");
+    if (!formData.username && !formData.password) {
+      toast.error("Please enter username and password");
       return;
     }
 
-    if (!formData.email) {
-      toast.error("Please enter email");
+    if (!formData.username) {
+      toast.error("Please enter username");
       return;
     }
 
@@ -74,23 +74,23 @@ const Login = () => {
           <CardHeader>
             <CardTitle>Login to your account</CardTitle>
             <CardDescription>
-              Enter your email below to login to your account
+              Enter your username and password below to login to your account
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={(e) => handleLogin(e)}>
               <div className="flex flex-col gap-6">
                 <div className="grid gap-3">
-                  <Label htmlFor="email">
-                    Email <span className="text-red-500">*</span>
+                  <Label htmlFor="username">
+                    Username <span className="text-red-500">*</span>
                   </Label>
                   <Input
-                    id="email"
-                    type="email"
+                    id="username"
+                    type="username"
                     placeholder="m@example.com"
                     required
                     onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
+                      setFormData({ ...formData, username: e.target.value })
                     }
                   />
                 </div>

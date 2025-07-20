@@ -1,5 +1,4 @@
 import React from "react";
-import Hero from "@/assets/hero.jpg";
 import { Button } from "@/components/ui/button";
 import { Commitment } from "@/config/constants";
 import QuoteModal from "@/components/modal/QuoteModal";
@@ -15,7 +14,7 @@ const Home = () => {
     <div>
       <div className="w-full min-h-[90vh] relative flex items-center justify-center py-10">
         <img
-          src={Hero}
+          src="https://res.cloudinary.com/dcuphhnil/image/upload/v1752939210/SCS_cover_dnvsac.jpg"
           alt="Hero Banner"
           className="absolute top-0 left-0 w-full h-full object-cover object-top z-0 brightness-50"
         />
