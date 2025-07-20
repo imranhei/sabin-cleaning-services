@@ -69,12 +69,12 @@ const Login = () => {
           Home
         </Link>
       </div>
-      <div className={cn("flex flex-col gap-6")}>
-        <Card>
+      <div className="flex flex-col gap-6">
+        <Card className="w-96">
           <CardHeader>
-            <CardTitle>Login to your account</CardTitle>
+            <CardTitle className="text-center text-2xl">Login</CardTitle>
             <CardDescription>
-              Enter your username and password below to login to your account
+              Login to Administrator account
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -87,7 +87,7 @@ const Login = () => {
                   <Input
                     id="username"
                     type="username"
-                    placeholder="m@example.com"
+                    placeholder=""
                     required
                     onChange={(e) =>
                       setFormData({ ...formData, username: e.target.value })

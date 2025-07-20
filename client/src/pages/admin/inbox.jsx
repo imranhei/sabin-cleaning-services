@@ -5,6 +5,7 @@ import { Loader } from "lucide-react";
 import InboxHeader from "@/components/InboxHeader";
 import InboxList from "@/components/InboxList";
 import { Link, useLocation } from "react-router-dom";
+import { updateUnseen } from "@/redux/admin/dashboard-slice";
 
 const statusFeatures = {
   pending: {
@@ -93,7 +94,15 @@ const Inbox = ({ trashed = false, status = "all", title = "Inbox" }) => {
               variant: "secondary",
             };
             return (
-              <Link to={`${item._id}`} key={item._id}>
+              <Link
+                to={`${item._id}`}
+                key={item._id}
+                onClick={() => {
+                  if (!item.isRead) {
+                    dispatch(updateUnseen(-1));
+                  }
+                }}
+              >
                 <InboxList
                   item={item}
                   ids={ids}

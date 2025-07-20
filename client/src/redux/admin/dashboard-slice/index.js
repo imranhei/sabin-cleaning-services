@@ -31,7 +31,11 @@ export const getDashboardData = createAsyncThunk(
 const dashboardSlice = createSlice({
   name: "dashboard",
   initialState,
-  reducers: {},
+  reducers: {
+    updateUnseen: (state, action) => {
+      state.unseen = state.unseen + action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getDashboardData.pending, (state) => {
       state.isLoading = true;
@@ -51,5 +55,7 @@ const dashboardSlice = createSlice({
     });
   },
 });
+
+export const { updateUnseen } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

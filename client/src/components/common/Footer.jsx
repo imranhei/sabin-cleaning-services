@@ -1,6 +1,6 @@
 import React from "react";
 import webLogo from "/Sabin_Clean_Sky_blue.png";
-import { Facebook, Phone, Youtube } from "lucide-react";
+import { Facebook, LogIn, Phone, Youtube } from "lucide-react";
 import { Button } from "../ui/button";
 import { footerLinks } from "@/config/constants";
 import { Link } from "react-router-dom";
@@ -16,12 +16,17 @@ const Footer = () => {
   return (
     <div className="bg-[#dff2fa]">
       <div className="max-w-7xl mx-auto px-4 flex md:flex-row flex-col items-start gap-4 py-10">
-        <Link to="/" className="flex gap-2 items-center min-w-72 pt-2">
-          <img src={webLogo} alt="" className="size-8" />
-          <h1 className="font-semibold text-muted-foreground">
-            Sabin Cleaning Services
-          </h1>
-        </Link>
+        <div className="flex justify-between gap-4 items-center">
+          <Link to="/" className="flex gap-2 items-center min-w-72 pt-2">
+            <img src={webLogo} alt="" className="size-8" />
+            <h1 className="font-semibold text-muted-foreground">
+              Sabin Cleaning Services
+            </h1>
+          </Link>
+          <Link to="/auth/login" className="pt-2">
+            <LogIn className="text-blue-500" />
+          </Link>
+        </div>
         <div className="flex flex-col gap-4 w-full">
           <div className="flex sm:flex-row flex-col justify-between gap-4 flex-1">
             <div className="flex items-center gap-2 text-muted-foreground">

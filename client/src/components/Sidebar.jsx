@@ -91,7 +91,7 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                 }`}
                               >
                                 <span>{subItem.title}</span>
-                                {subItem.title === "Inbox"
+                                {subItem.title === "Inbox" && unseen > 0
                                   ? ` (${unseen})`
                                   : ""}
                               </Link>
