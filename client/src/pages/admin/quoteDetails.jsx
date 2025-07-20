@@ -3,6 +3,7 @@ import {
   ArrowLeft,
   CircleCheckBig,
   CircleX,
+  History,
   Loader,
   Printer,
   RefreshCw,
@@ -27,6 +28,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import PerDeleteModal from "@/components/modal/PerDeleteModal";
+import RecoverModal from "@/components/modal/RecoverModal";
 
 const statusFeatures = {
   pending: {
@@ -96,9 +98,19 @@ const QuoteDetails = () => {
             }}
           />
           {isTrash ? (
-            <PerDeleteModal ids={[quote?._id]} resetQut={true}>
-              <Trash2Icon className="size-6 text-red-400 hover:text-red-500 bg-red-100 rounded p-1" />
-            </PerDeleteModal>
+            <div className="flex items-center gap-2">
+              <RecoverModal
+                ids={[quote?._id]}
+                trashed={true}
+              >
+                <div className="p-1 bg-green-100 rounded">
+                  <History className="size-4 text-green-400 hover:text-green-500" />
+                </div>
+              </RecoverModal>
+              <PerDeleteModal ids={[quote?._id]} resetQut={true}>
+                <Trash2Icon className="size-6 text-red-400 hover:text-red-500 bg-red-100 rounded p-1" />
+              </PerDeleteModal>
+            </div>
           ) : (
             <DeleteModal ids={[quote?._id]} resetQut={true}>
               <Trash2Icon className="size-6 text-red-400 hover:text-red-500 bg-red-100 rounded p-1 cursor-pointer" />

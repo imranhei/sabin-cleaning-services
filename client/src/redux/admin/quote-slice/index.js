@@ -116,8 +116,8 @@ export const deleteQuote = createAsyncThunk(
 
     const response = await axios.delete(
       `${import.meta.env.VITE_API_URL}/api/quote`,
-      { ids },
       {
+        data: { ids },
         headers: {
           Authorization: `Bearer ${token}`,
         },

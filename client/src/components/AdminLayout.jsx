@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import AdminSidebar from "./Sidebar";
 import {
@@ -9,12 +9,12 @@ import {
 import { LogOut } from "lucide-react";
 import { toast } from "sonner";
 import { resetTokenAndCredentials } from "../redux/auth-slice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const AdminLayout = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleLogout = () => {
     dispatch(resetTokenAndCredentials());
@@ -24,10 +24,13 @@ const AdminLayout = () => {
   return (
     <SidebarProvider>
       {/* <div className="flex h-screen overflow-hidden"> */}
-      <AdminSidebar />
+      <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <SidebarInset className="flex flex-col w-full overflow-hidden">
         <header className="flex justify-between h-[57px] shrink-0 items-center gap-2 border-b px-4">
-          <SidebarTrigger className="-ml-1" />
+          <SidebarTrigger
+            className="-ml-1"
+            onClick={() => setSidebarOpen((prev) => !prev)}
+          />
           <div className="flex items-center gap-2">
             <LogOut
               className="size-8 p-2 bg-gray-100 rounded"

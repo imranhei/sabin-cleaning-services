@@ -54,7 +54,7 @@ const PerDeleteModal = ({
       onOpenChange={(value) => {
         setOpen(value); // open/close the modal
         if (!value) {
-          setIds([]);
+          // setIds([]);
         } // if modal is closed, reset ids
       }}
     >
@@ -77,7 +77,7 @@ const PerDeleteModal = ({
               className="w-full bg-gray-100 hover:bg-gray-200 text-black/70 shadow-none rounded-full"
               onClick={() => {
                 setOpen(false);
-                setIds([]);
+                // setIds([]);
               }}
             >
               No, Keep It.
