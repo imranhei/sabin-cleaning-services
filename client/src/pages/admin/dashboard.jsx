@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDashboardData } from "@/redux/admin/dashboard-slice";
-import { Inbox, Loader } from "lucide-react";
+import { CircleCheckBig, CircleX, ClockFading, Inbox, Loader } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, LabelList, Legend, XAxis } from "recharts";
 import {
   ChartContainer,
@@ -76,7 +76,7 @@ const Dashboard = () => {
             </span>
           </div>
           <div className="p-2 rounded bg-amber-200">
-            <Inbox className="text-amber-500 size-12" />
+            <ClockFading className="text-amber-500 size-12" />
           </div>
         </div>
 
@@ -90,7 +90,7 @@ const Dashboard = () => {
             </span>
           </div>
           <div className="p-2 rounded bg-green-200">
-            <Inbox className="text-green-500 size-12" />
+            <CircleCheckBig className="text-green-500 size-12" />
           </div>
         </div>
 
@@ -104,7 +104,7 @@ const Dashboard = () => {
             </span>
           </div>
           <div className="p-2 rounded bg-rose-200">
-            <Inbox className="text-rose-500 size-12" />
+            <CircleX className="text-rose-500 size-12" />
           </div>
         </div>
       </div>
