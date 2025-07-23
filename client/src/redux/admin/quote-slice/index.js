@@ -176,11 +176,8 @@ const quoteSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(updateQuote.pending, (state) => {
-      state.isLoading = true;
     });
     builder.addCase(updateQuote.fulfilled, (state, action) => {
-      state.isLoading = false;
-
       const updated = action.payload.data;
 
       // Update the quote in the list if it exists
@@ -202,7 +199,6 @@ const quoteSlice = createSlice({
     });
 
     builder.addCase(updateQuote.rejected, (state) => {
-      state.isLoading = false;
     });
     builder.addCase(softDeleteQuote.pending, (state) => {
       state.isLoading = true;

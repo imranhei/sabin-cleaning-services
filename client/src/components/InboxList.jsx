@@ -1,10 +1,8 @@
 import React from "react";
 import { Checkbox } from "./ui/checkbox";
 import { Badge } from "./ui/badge";
-import { History, SquarePen, Trash2Icon } from "lucide-react";
+import { History, NotebookPen, SquarePen, Trash2Icon } from "lucide-react";
 import RecoverModal from "./modal/RecoverModal";
-import PerDeleteModal from "./modal/PerDeleteModal";
-import DeleteModal from "./modal/DeleteModal";
 
 const InboxList = ({
   item,
@@ -69,23 +67,14 @@ const InboxList = ({
           e.preventDefault();
         }}
       >
-        {/* Date - appears first on small screens */}
-        <p
-          className={`flex-shrink-0 text-right ${
-            item?.isRead ? "text-muted-foreground" : "font-semibold"
-          }`}
-        >
-          {dateFormatter(item.createdAt)}
-        </p>
-
-        {/* Action buttons - appear in a row below date on small screens */}
+        {/* Action buttons */}
         <div className="flex gap-1 sm:gap-2">
           {item.note && (
             <div className="p-1 bg-green-100 rounded flex-shrink-0">
-              <SquarePen className="size-4 text-green-500" />
+              <NotebookPen className="size-5 text-green-500" />
             </div>
           )}
-          {isTrash && (
+          {/* {isTrash && (
             <RecoverModal
               ids={[item._id]}
               setIds={setIds}
@@ -97,28 +86,16 @@ const InboxList = ({
                 <History className="size-4 text-green-400 hover:text-green-500" />
               </div>
             </RecoverModal>
-          )}
-          {isTrash ? (
-            <PerDeleteModal
-              ids={[item._id]}
-              setIds={setIds}
-              page={page}
-              limit={limit}
-            >
-              <Trash2Icon className="size-6 text-red-400 hover:text-red-500 bg-red-100 rounded p-1 flex-shrink-0" />
-            </PerDeleteModal>
-          ) : (
-            <DeleteModal
-              ids={[item._id]}
-              setIds={setIds}
-              status={status}
-              page={page}
-              limit={limit}
-            >
-              <Trash2Icon className="size-6 text-red-400 hover:text-red-500 bg-red-100 rounded p-1 flex-shrink-0" />
-            </DeleteModal>
-          )}
+          )} */}
         </div>
+        {/* Date - appears second on small screens */}
+        <p
+          className={`flex-shrink-0 text-right ${
+            item?.isRead ? "text-muted-foreground" : "font-semibold"
+          }`}
+        >
+          {dateFormatter(item.createdAt)}
+        </p>
       </div>
     </div>
   );

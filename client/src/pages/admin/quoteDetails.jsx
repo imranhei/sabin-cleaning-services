@@ -7,7 +7,6 @@ import {
   Loader,
   Printer,
   RefreshCw,
-  SquarePen,
   Trash2Icon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -29,6 +28,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import PerDeleteModal from "@/components/modal/PerDeleteModal";
 import RecoverModal from "@/components/modal/RecoverModal";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 const statusFeatures = {
   pending: {
@@ -53,6 +54,9 @@ const QuoteDetails = () => {
   const { quote, isLoading } = useSelector((state) => state.quote);
   const isTrash = pathname.includes("trash");
 
+  const [formData, setFormData] = useState("");
+  const [isLoadingSave, setIsLoadingSave] = useState(false);
+
   const handleStatus = (status) => {
     dispatch(updateQuote({ id: quote._id, status }));
   };
@@ -75,9 +79,29 @@ const QuoteDetails = () => {
     return `${datePart} at ${timePart}`;
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (formData.trim() === quote?.note.trim()) return;
+    setIsLoadingSave(true);
+    // Dispatch the createQuote action
+    dispatch(updateQuote({ id: quote?._id, note: formData })).then((res) => {
+      if (res.payload?.success) {
+        toast.success("Note updated successfully");
+      } else {
+        toast.error(res.payload || "Something went wrong");
+      }
+    });
+    setIsLoadingSave(false);
+  };
+
   useEffect(() => {
     dispatch(getQuote(id));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    setFormData(quote?.note || "");
+  }, [quote]);
 
   if (isLoading)
     return (
@@ -97,12 +121,11 @@ const QuoteDetails = () => {
               navigate(-1);
             }}
           />
+        </div>
+        <div className="flex gap-2 items-center">
           {isTrash ? (
             <div className="flex items-center gap-2">
-              <RecoverModal
-                ids={[quote?._id]}
-                trashed={true}
-              >
+              <RecoverModal ids={[quote?._id]} trashed={true}>
                 <div className="p-1 bg-green-100 rounded">
                   <History className="size-4 text-green-400 hover:text-green-500" />
                 </div>
@@ -116,14 +139,6 @@ const QuoteDetails = () => {
               <Trash2Icon className="size-6 text-red-400 hover:text-red-500 bg-red-100 rounded p-1 cursor-pointer" />
             </DeleteModal>
           )}
-          <NoteModal id={quote?._id} prevNote={quote?.note}>
-            <Button size="sm" className="bg-[#79c043]">
-              <SquarePen />
-              {quote?.note ? "Edit Note" : "Add Note"}
-            </Button>
-          </NoteModal>
-        </div>
-        <div className="flex gap-2 items-center">
           {quote?.status !== "pending" && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -202,6 +217,27 @@ const QuoteDetails = () => {
             </Button>
           </div>
         )}
+
+        <hr />
+        <form onSubmit={handleSubmit}>
+          <div className="space-y-2">
+            <div className="font-semibold">
+              {quote?.note ? "Edit Note" : "Add Note"}
+            </div>
+            <Textarea
+              placeholder="Type your note here..."
+              className="min-h-32 max-h-48"
+              value={formData}
+              onChange={(e) => setFormData(e.target.value)}
+            />
+            <div className="flex justify-end">
+              <Button className="max-w-40 w-full bg-[#79c043]" type="submit">
+                {isLoadingSave && <Loader className="mr-2 animate-spin" />} Save
+                Note
+              </Button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );

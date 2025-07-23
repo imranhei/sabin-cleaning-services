@@ -1,8 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDashboardData } from "@/redux/admin/dashboard-slice";
-import { CircleCheckBig, CircleX, ClockFading, Inbox, Loader } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, LabelList, Legend, XAxis } from "recharts";
+import {
+  CircleCheckBig,
+  CircleX,
+  ClockFading,
+  Inbox,
+  Loader,
+} from "lucide-react";
+import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
   ChartContainer,
   ChartTooltip,
@@ -111,19 +117,22 @@ const Dashboard = () => {
 
       <div className="w-full h-fit overflow-hidden border rounded shadow p-4">
         <ChartContainer config={chartConfig} className="sm:h-80 h-40 w-full">
-          <BarChart
+          <LineChart
             accessibilityLayer
             data={dummyChartData}
             margin={{
               top: 25,
               bottom: 8,
+              left: -30,
             }}
           >
             <CartesianGrid vertical={false} />
             <Legend />
+            <YAxis axisLine={false} tickLine={false} tickMargin={10} />
             <XAxis
               dataKey="month"
               tickLine={false}
+              axisLine={false}
               tickMargin={10}
               tickFormatter={(value) => value.slice(0, 3)}
             />
@@ -131,31 +140,28 @@ const Dashboard = () => {
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey="accepted" fill="#71fb81" radius={4}>
-              <LabelList
-                position="top"
-                offset={6}
-                className="fill-foreground"
-                fontSize={12}
-              />
-            </Bar>
-            <Bar dataKey="rejected" fill="#fb7185" radius={4}>
-              <LabelList
-                position="top"
-                offset={6}
-                className="fill-foreground"
-                fontSize={12}
-              />
-            </Bar>
-            <Bar dataKey="pending" fill="#71b1fb" radius={4}>
-              <LabelList
-                position="top"
-                offset={6}
-                className="fill-foreground"
-                fontSize={12}
-              />
-            </Bar>
-          </BarChart>
+            <Line
+              dataKey="accepted"
+              type="natural"
+              stroke="#71fb81"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="rejected"
+              type="natural"
+              stroke="#fb7185"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              dataKey="pending"
+              type="natural"
+              stroke="#71b1fb"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
         </ChartContainer>
       </div>
     </div>
