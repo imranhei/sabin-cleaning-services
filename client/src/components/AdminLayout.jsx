@@ -35,7 +35,7 @@ const AdminLayout = () => {
               className="size-8 p-2 bg-gray-100 rounded"
               onClick={handleLogout}
             />
-            <Avatar>
+            <Avatar className="size-8">
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>

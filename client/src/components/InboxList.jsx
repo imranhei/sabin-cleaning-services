@@ -1,19 +1,13 @@
 import React from "react";
 import { Checkbox } from "./ui/checkbox";
 import { Badge } from "./ui/badge";
-import { History, NotebookPen, SquarePen, Trash2Icon } from "lucide-react";
-import RecoverModal from "./modal/RecoverModal";
+import { NotebookPen } from "lucide-react";
 
 const InboxList = ({
   item,
   ids,
-  setIds,
   toggleSingle,
   curStatus,
-  isTrash,
-  page,
-  limit,
-  status,
 }) => {
   const dateFormatter = (date) => {
     const options = { month: "short", day: "numeric" };
@@ -70,8 +64,8 @@ const InboxList = ({
         {/* Action buttons */}
         <div className="flex gap-1 sm:gap-2">
           {item.note && (
-            <div className="p-1 bg-green-100 rounded flex-shrink-0">
-              <NotebookPen className="size-5 text-green-500" />
+            <div className="p-1 rounded flex-shrink-0">
+              <NotebookPen className="size-4 text-green-500" />
             </div>
           )}
           {/* {isTrash && (

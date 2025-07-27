@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,11 +9,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Eye, EyeClosed, Loader } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/redux/auth-slice";
 import { toast } from "sonner";
+import { checkAuth } from "@/redux/auth-slice";
 
 const initialstate = {
   username: "",
@@ -24,9 +24,10 @@ const initialstate = {
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoading } = useSelector((state) => state.auth);
+  const { isLoading, isLoadingAuth } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState(initialstate);
   const [show, setShow] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -61,6 +62,29 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return setIsCheckingAuth(false);
+    }
+
+    dispatch(checkAuth()).then((res) => {
+      if (res.payload?.success) {
+        navigate("/admin/dashboard", { replace: true });
+      } else {
+        setIsCheckingAuth(false);
+      }
+    });
+  }, []);
+
+  if (isCheckingAuth) {
+    return (
+      <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 relative">
+        <Loader className="animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 relative">
       <div className="absolute top-0 left-0 p-4">
@@ -73,9 +97,7 @@ const Login = () => {
         <Card className="w-96">
           <CardHeader>
             <CardTitle className="text-center text-2xl">Login</CardTitle>
-            <CardDescription>
-              Login to Administrator account
-            </CardDescription>
+            <CardDescription>Login to Administrator account</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={(e) => handleLogin(e)}>

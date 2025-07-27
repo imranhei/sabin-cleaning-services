@@ -10,6 +10,7 @@ import {
   Inbox,
   Settings,
   NotebookPen,
+  CircleQuestionMark
 } from "lucide-react";
 
 export const menu = [
@@ -57,11 +58,6 @@ export const AdminMenu = [
     icon: Home,
   },
   {
-    title: "Calendar",
-    url: "/admin/calendar",
-    icon: CalendarDays,
-  },
-  {
     title: "Quotes",
     url: "#",
     icon: Inbox,
@@ -81,10 +77,20 @@ export const AdminMenu = [
     ],
   },
   {
+    title: "Calendar",
+    url: "/admin/calendar",
+    icon: CalendarDays,
+  },
+  {
     title: "Blogs",
     url: "/admin/blogs",
     icon: NotebookPen,
   },
+  // {
+  //   title: "FAQs",
+  //   url: "/admin/faqs",
+  //   icon: CircleQuestionMark,
+  // },
   {
     title: "Settings",
     url: "#",

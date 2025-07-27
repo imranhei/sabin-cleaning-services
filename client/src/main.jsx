@@ -5,6 +5,7 @@ import store from "./redux/store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner"
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>

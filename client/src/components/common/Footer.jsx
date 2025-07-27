@@ -83,7 +83,7 @@ const Footer = () => {
                   <AccordionContent className="flex flex-col gap-0 text-balance pt-0">
                     {link.items.map((item, idx) => (
                       <Link
-                        to={item.url}
+                        to={`/services/${item.url}`}
                         key={idx}
                         className="hover:text-[#79c043] cursor-pointer pt-2"
                       >
