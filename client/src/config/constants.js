@@ -10,7 +10,8 @@ import {
   Inbox,
   Settings,
   NotebookPen,
-  CircleQuestionMark
+  CircleQuestionMark,
+  Users
 } from "lucide-react";
 
 export const menu = [
@@ -92,9 +93,28 @@ export const AdminMenu = [
   //   icon: CircleQuestionMark,
   // },
   {
+    title: "Users",
+    url: "/admin/users",
+    icon: Users,
+  },
+  {
     title: "Settings",
     url: "#",
     icon: Settings,
+    subMenus: [
+      {
+        title: "Profile",
+        url: "/admin/profile",
+      },
+      {
+        title: "Add User",
+        url: "/admin/register",
+      },
+      {
+        title: "Change Password",
+        url: "/admin/change-password",
+      },
+    ],
   },
 ];
 

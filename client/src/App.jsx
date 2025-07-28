@@ -19,6 +19,10 @@ import Inbox from "./pages/admin/inbox";
 import BlogPost from "./pages/admin/blogPost";
 import QuoteDetails from "./pages/admin/quoteDetails";
 import CalendarEvent from "./pages/admin/calendarEvent";
+import Users from "./pages/admin/users";
+import Profile from "./pages/admin/profile";
+import Register from "./pages/admin/register";
+import ChangePassword from "./pages/admin/changePassword";
 
 function App() {
   return (
@@ -60,6 +64,11 @@ function App() {
           />
           <Route path="trash/:id" element={<QuoteDetails />} />
           <Route path="blogs" element={<BlogPost />} />
+          {/* <Route path="blogs/:id" element={<BlogPost />} /> */}
+          <Route path="users" element={<Users />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="register" element={<Register />} />
+          <Route path="change-password" element={<ChangePassword />} />
         </Route>
 
         <Route path="auth/login" element={<Login />} />

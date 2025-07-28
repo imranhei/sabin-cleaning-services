@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import User from "../../model/User.js";
 
 export const register = async (req, res) => {
-  const { name, username, password } = req.body;
+  const { name, username, password, role } = req.body;
 
   try {
     const existingUser = await User.findOne({ username });
@@ -14,7 +14,7 @@ export const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ name, username, password: hashedPassword });
+    const user = new User({ name, username, password: hashedPassword, role });
     await user.save();
 
     res
@@ -93,6 +93,19 @@ export const checkAuth = async (req, res, next) => {
     next();
   } catch (error) {
     return res.status(401).json({ success: false, message: "Unauthorized" });
+  }
+};
+
+export const isSuperAdmin = async (req, res, next) => {
+  console.log(req.user);
+  try {
+    const user = await User.findById(req.user.userId);
+    if (user.role !== "super-admin") {
+      return res.status(403).json({ success: false, message: "Forbidden" });
+    }
+    next();
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server error" });
   }
 };
 

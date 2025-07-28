@@ -14,7 +14,6 @@ const CalendarEvent = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleSelectEvent = (event) => {
-    // console.log(event);
     setSelectedEvent(event);
     setModalOpen(true);
   };
@@ -46,13 +45,6 @@ const CalendarEvent = () => {
         onSelectEvent={handleSelectEvent}
         style={{ height: 500 }}
       />
-      {/* {selectedEvent && (
-        <AddEventModal
-          event={selectedEvent}
-          open={modalOpen}
-          setOpen={setModalOpen}
-        />
-      )} */}
     </div>
   );
 };

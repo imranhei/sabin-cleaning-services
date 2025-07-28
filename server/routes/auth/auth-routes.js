@@ -4,12 +4,13 @@ import {
   login,
   logout,
   checkAuth,
+  isSuperAdmin,
   resetPassword,
 } from "../../controller/auth/auth-controller.js";
 
 const router = express.Router();
 
-router.post("/register", register);
+router.post("/register", checkAuth, isSuperAdmin, register);
 router.post("/login", login);
 router.post("/logout", logout);
 router.get("/check-auth", checkAuth, (req, res) => {
