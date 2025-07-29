@@ -3,15 +3,15 @@ import authSlice from "./auth-slice";
 import quoteSlice from "./admin/quote-slice";
 import dashboardSlice from "./admin/dashboard-slice";
 import eventSlice from "./admin/event-slice";
-import accountSlice from "./admin/account-slice";
+import userSlice from "./admin/user-slice";
 
 const store = configureStore({
-  reducer: { 
+  reducer: {
     auth: authSlice,
     dashboard: dashboardSlice,
     quote: quoteSlice,
     event: eventSlice,
-    account: accountSlice
- },
+    user: userSlice,
+  },
 });
 export default store;

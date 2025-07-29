@@ -12,7 +12,6 @@ import { toast } from "sonner";
 import { History, Loader, Trash2 } from "lucide-react";
 import { useState } from "react";
 import {
-  softDeleteQuote,
   getQuotes,
   resetQuote,
   recoverQuote,

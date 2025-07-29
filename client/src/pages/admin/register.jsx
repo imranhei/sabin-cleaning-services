@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
-import { registerUser } from "@/redux/admin/account-slice";
+import { registerUser } from "@/redux/admin/user-slice";
 import { Eye, EyeClosed } from "lucide-react";
 
 const initialState = {
@@ -37,7 +37,7 @@ const fields = [
 
 const Register = () => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.account);
+  const { isLoading } = useSelector((state) => state.user);
   const [formData, setFormData] = useState(initialState);
   const [visible, setVisible] = useState({
     password: false,

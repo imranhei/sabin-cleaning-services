@@ -7,6 +7,7 @@ import authRoutes from "./routes/auth/auth-routes.js";
 import dashboardRoutes from "./routes/admin/dashboard-route.js";
 import quoteRoutes from "./routes/admin/quote-routes.js";
 import eventRoutes from "./routes/admin/event-routes.js";
+import userRoutes from "./routes/admin/user-routes.js";
 
 dotenv.config();
 const app = express();
@@ -57,6 +58,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/quote", quoteRoutes);
 app.use("/api/event", eventRoutes);
+app.use("/api/user", userRoutes);
 
 const startServer = async () => {
   await connectDB();

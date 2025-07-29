@@ -5,37 +5,42 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Eye, EyeClosed } from "lucide-react";
+import { resetPassword } from "@/redux/admin/user-slice";
 
 const initialState = {
-  username: "",
-  password: "",
+  oldPassword: "",
+  newPassword: "",
   confirmPassword: "",
 };
 
 const fields = [
-  { label: "Username", name: "username", type: "text", required: true },
   {
-    label: "Password",
-    name: "password",
+    label: "Old Password",
+    name: "oldPassword",
     type: "password",
     required: true,
-    isPassword: true,
   },
   {
-    label: "Confirm Password",
+    label: "New Password",
+    name: "newPassword",
+    type: "password",
+    required: true,
+  },
+  {
+    label: "Confirm New Password",
     name: "confirmPassword",
     type: "password",
     required: true,
-    isPassword: true,
   },
 ];
 
 const ChangePassword = () => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.account);
+  const { isLoading } = useSelector((state) => state.user);
   const [formData, setFormData] = useState(initialState);
   const [visible, setVisible] = useState({
-    password: false,
+    oldPassword: false,
+    newPassword: false,
     confirmPassword: false,
   });
 
@@ -46,17 +51,27 @@ const ChangePassword = () => {
     e.preventDefault();
 
     //minimum password length check
-    if (formData.password.length < 6) {
+    if (
+      formData.newPassword.length < 6 ||
+      formData.confirmPassword.length < 6
+    ) {
       toast.error("Password must be at least 6 characters");
       return;
     }
 
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.newPassword !== formData.confirmPassword) {
       toast.error("Password does not match");
       return;
     }
 
-    dispatch();
+    dispatch(resetPassword(formData)).then((res) => {
+      if (res.payload?.success) {
+        toast.success("Password reset successful");
+        setFormData(initialState);
+      } else {
+        toast.error(res.payload?.message || "Something went wrong");
+      }
+    });
   };
 
   return (
@@ -72,36 +87,29 @@ const ChangePassword = () => {
               <Label htmlFor={field.name}>{field.label}</Label>
               <div className="relative">
                 <Input
-                  type={
-                    field.isPassword
-                      ? visible[field.name]
-                        ? "text"
-                        : "password"
-                      : field.type
-                  }
+                  type={visible[field.name] ? "text" : field.type}
                   id={field.name}
                   placeholder={field.label}
                   value={formData[field.name]}
                   onChange={handleChange(field.name)}
                   className="pr-10"
                 />
-                {field.isPassword && (
-                  <div
-                    className="absolute inset-y-0 right-0 flex items-center"
-                    onClick={() =>
-                      setVisible({
-                        ...visible,
-                        [field.name]: !visible[field.name],
-                      })
-                    }
-                  >
-                    {visible[field.name] ? (
-                      <Eye className="mr-4 h-4 w-4" />
-                    ) : (
-                      <EyeClosed className="mr-4 h-4 w-4" />
-                    )}
-                  </div>
-                )}
+
+                <div
+                  className="absolute inset-y-0 right-0 flex items-center"
+                  onClick={() =>
+                    setVisible({
+                      ...visible,
+                      [field.name]: !visible[field.name],
+                    })
+                  }
+                >
+                  {visible[field.name] ? (
+                    <Eye className="mr-4 h-4 w-4" />
+                  ) : (
+                    <EyeClosed className="mr-4 h-4 w-4" />
+                  )}
+                </div>
               </div>
             </div>
           ))}

@@ -44,9 +44,18 @@ export const login = async (req, res) => {
         .json({ success: false, message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ userId: user._id, username: user.username, name: user.name }, process.env.JWT_SECRET, {
-      expiresIn: "30d",
-    });
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        username: user.username,
+        name: user.name,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "30d",
+      }
+    );
     res.status(200).json({
       success: true,
       message: "Login successful",
@@ -56,6 +65,7 @@ export const login = async (req, res) => {
         name: user.name,
         username: user.username,
       },
+      role: user.role,
     });
   } catch (error) {
     console.error(error);
@@ -90,6 +100,7 @@ export const checkAuth = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
+    req.role = decoded.role;
     next();
   } catch (error) {
     return res.status(401).json({ success: false, message: "Unauthorized" });
@@ -97,7 +108,6 @@ export const checkAuth = async (req, res, next) => {
 };
 
 export const isSuperAdmin = async (req, res, next) => {
-  console.log(req.user);
   try {
     const user = await User.findById(req.user.userId);
     if (user.role !== "super-admin") {
@@ -111,16 +121,28 @@ export const isSuperAdmin = async (req, res, next) => {
 
 export const resetPassword = async (req, res) => {
   try {
-    const { username, newPassword } = req.body;
-    const user = await User.findOne({ username });
+    const { oldPassword, newPassword } = req.body;
+
+    const user = await User.findById(req.user.userId);
+
     if (!user) {
       return res
         .status(404)
         .json({ success: false, message: "User not found" });
     }
+
+    const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
+
+    if (!isPasswordValid) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid credentials" });
+    }
+
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     user.password = hashedPassword;
     await user.save();
+
     return res
       .status(200)
       .json({ success: true, message: "Password reset successful" });

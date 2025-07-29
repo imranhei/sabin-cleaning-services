@@ -7,6 +7,7 @@ const initialState = {
   user: null,
   isLoadingAuth: false,
   authChecked: false,
+  role: null,
 };
 
 export const login = createAsyncThunk(
@@ -72,12 +73,14 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isAuthenticated = true;
         state.user = action.payload.user;
+        state.role = action.payload.role;
         localStorage.setItem("token", action.payload.token);
     })
     .addCase(login.rejected, (state) => {
         state.isLoading = false;
         state.isAuthenticated = false;
         state.user = null;
+        state.role = null;
       })
       .addCase(checkAuth.pending, (state) => {
         state.isLoadingAuth = true;
@@ -86,12 +89,14 @@ export const authSlice = createSlice({
         state.isLoadingAuth = false;
         state.isAuthenticated = true;
         state.user = action.payload.user;
+        state.role = action.payload.user.role;
         state.authChecked = true;
       })
       .addCase(checkAuth.rejected, (state) => {
         state.isLoadingAuth = false;
         state.isAuthenticated = false;
         state.user = null;
+        state.role = null;
         state.authChecked = true;
       })
       .addCase(resetPassword.pending, (state) => {

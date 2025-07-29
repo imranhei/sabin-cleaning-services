@@ -11,7 +11,6 @@ import {
   Settings,
   NotebookPen,
   CircleQuestionMark,
-  Users
 } from "lucide-react";
 
 export const menu = [
@@ -93,11 +92,6 @@ export const AdminMenu = [
   //   icon: CircleQuestionMark,
   // },
   {
-    title: "Users",
-    url: "/admin/users",
-    icon: Users,
-  },
-  {
     title: "Settings",
     url: "#",
     icon: Settings,
@@ -107,9 +101,13 @@ export const AdminMenu = [
         url: "/admin/profile",
       },
       {
-        title: "Add User",
-        url: "/admin/register",
+        title: "Users",
+        url: "/admin/users",
       },
+      // {
+      //   title: "Add User",
+      //   url: "/admin/register",
+      // },
       {
         title: "Change Password",
         url: "/admin/change-password",
@@ -534,16 +532,16 @@ export const blogs = [
 ];
 
 export const dummyChartData = [
-  { "month": "January", "accepted": 3, "rejected": 1, "pending": 2 },
-  { "month": "February", "accepted": 2, "rejected": 2, "pending": 1 },
-  { "month": "March", "accepted": 4, "rejected": 0, "pending": 3 },
-  { "month": "April", "accepted": 5, "rejected": 1, "pending": 2 },
-  { "month": "May", "accepted": 2, "rejected": 3, "pending": 1 },
-  { "month": "June", "accepted": 3, "rejected": 2, "pending": 2 },
-  { "month": "July", "accepted": 2, "rejected": 1, "pending": 1 },
-  { "month": "August", "accepted": 4, "rejected": 2, "pending": 0 },
-  { "month": "September", "accepted": 3, "rejected": 1, "pending": 2 },
-  { "month": "October", "accepted": 2, "rejected": 0, "pending": 3 },
-  { "month": "November", "accepted": 5, "rejected": 1, "pending": 1 },
-  { "month": "December", "accepted": 4, "rejected": 2, "pending": 1 }
-]
+  { month: "January", accepted: 3, rejected: 1, pending: 2 },
+  { month: "February", accepted: 2, rejected: 2, pending: 1 },
+  { month: "March", accepted: 4, rejected: 0, pending: 3 },
+  { month: "April", accepted: 5, rejected: 1, pending: 2 },
+  { month: "May", accepted: 2, rejected: 3, pending: 1 },
+  { month: "June", accepted: 3, rejected: 2, pending: 2 },
+  { month: "July", accepted: 2, rejected: 1, pending: 1 },
+  { month: "August", accepted: 4, rejected: 2, pending: 0 },
+  { month: "September", accepted: 3, rejected: 1, pending: 2 },
+  { month: "October", accepted: 2, rejected: 0, pending: 3 },
+  { month: "November", accepted: 5, rejected: 1, pending: 1 },
+  { month: "December", accepted: 4, rejected: 2, pending: 1 },
+];
