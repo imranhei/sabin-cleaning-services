@@ -60,7 +60,7 @@ const ChangePassword = () => {
     }
 
     if (formData.newPassword !== formData.confirmPassword) {
-      toast.error("Password does not match");
+      toast.error("New Password and Confirm Password does not match");
       return;
     }
 
@@ -115,7 +115,7 @@ const ChangePassword = () => {
           ))}
 
           <Button type="submit" className="w-full" disabled={isLoading}>
-            Submit
+            {isLoading ? "Changing..." : "Change Password"}
           </Button>
         </form>
       </div>

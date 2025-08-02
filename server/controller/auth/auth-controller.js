@@ -17,9 +17,14 @@ export const register = async (req, res) => {
     const user = new User({ name, username, password: hashedPassword, role });
     await user.save();
 
-    res
-      .status(201)
-      .json({ success: true, message: "User registered successfully" });
+    const userData = user.toObject();
+    delete userData.password;
+
+    res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      user: userData,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Server error" });
@@ -47,8 +52,6 @@ export const login = async (req, res) => {
     const token = jwt.sign(
       {
         userId: user._id,
-        username: user.username,
-        name: user.name,
         role: user.role,
       },
       process.env.JWT_SECRET,
@@ -56,15 +59,13 @@ export const login = async (req, res) => {
         expiresIn: "30d",
       }
     );
+    const { password: _, ...userWithoutPassword } = user.toObject();
+
     res.status(200).json({
       success: true,
       message: "Login successful",
       token,
-      user: {
-        id: user._id,
-        name: user.name,
-        username: user.username,
-      },
+      user: userWithoutPassword,
       role: user.role,
     });
   } catch (error) {
@@ -99,8 +100,14 @@ export const checkAuth = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    req.role = decoded.role;
+    const user = await User.findById(decoded.userId).select("-password");
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+    req.user = user;
+    req.role = user.role;
     next();
   } catch (error) {
     return res.status(401).json({ success: false, message: "Unauthorized" });
@@ -109,12 +116,12 @@ export const checkAuth = async (req, res, next) => {
 
 export const isSuperAdmin = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user.userId);
-    if (user.role !== "super-admin") {
+    if (req.role !== "super-admin") {
       return res.status(403).json({ success: false, message: "Forbidden" });
     }
     next();
   } catch (error) {
+    console.error("isSuperAdmin error:", error);
     return res.status(500).json({ success: false, message: "Server error" });
   }
 };
@@ -123,7 +130,7 @@ export const resetPassword = async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
 
-    const user = await User.findById(req.user.userId);
+    const user = await User.findById(req.user._id);
 
     if (!user) {
       return res
@@ -134,9 +141,10 @@ export const resetPassword = async (req, res) => {
     const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
 
     if (!isPasswordValid) {
-      return res
-        .status(401)
-        .json({ success: false, message: "Invalid credentials" });
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials, Old password is incorrect",
+      });
     }
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);

@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -15,9 +14,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { registerUser } from "@/redux/admin/user-slice";
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
+import { addUser } from "@/redux/admin/user-slice";
 
 const initialState = {
-  Name: "",
+  name: "",
   username: "",
   password: "",
   confirmPassword: "",
@@ -25,7 +25,7 @@ const initialState = {
 };
 
 const fields = [
-  { label: "Name", name: "Name", type: "text", required: true },
+  { label: "Name", name: "name", type: "text", required: true },
   { label: "Username", name: "username", type: "text", required: true },
   {
     label: "Password",
@@ -76,6 +76,7 @@ const RegisterModal = ({ children }) => {
 
     dispatch(registerUser(formData)).then((res) => {
       if (res.payload?.success) {
+        dispatch(addUser(res.payload.user));
         toast.success("User registered successfully");
         setFormData(initialState);
       } else {
@@ -158,7 +159,7 @@ const RegisterModal = ({ children }) => {
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>
-              Register User
+              {isLoading ? "Registering..." : "Register"}
             </Button>
           </form>
         </DialogHeader>

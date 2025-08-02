@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getUsers } from "@/redux/admin/user-slice";
+import { getUsers, deleteUser } from "@/redux/admin/user-slice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Table,
@@ -12,14 +12,35 @@ import {
 import RegisterModal from "@/components/modal/RegisterModal";
 import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
+import UpdateRoleModal from "@/components/modal/UpdateRoleModal";
+import SimpleDeleteModal from "@/components/modal/SimpleDeleteModal";
+import { toast } from "sonner";
 
 const Users = () => {
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.user);
+  const { users, isLoading } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    dispatch(deleteUser(id))
+      .then((res) => {
+        if (res.meta.requestStatus === "fulfilled" && res.payload?.success) {
+          toast.success(res.payload?.message || "User deleted successfully");
+        } else {
+          // Check error from rejectWithValue
+          toast.error(
+            res.payload || res.error?.message || "Something went wrong"
+          );
+        }
+      })
+      .catch((err) => {
+        console.error("Dispatch error:", err);
+      });
+  };
 
   return (
     <div className="flex h-auto flex-col gap-4 items-center">
@@ -39,14 +60,29 @@ const Users = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {users.map((invoice) => (
-            <TableRow key={invoice._id}>
-              <TableCell className="font-medium">{invoice.name}</TableCell>
-              <TableCell>{invoice.username}</TableCell>
-              <TableCell>{invoice.role}</TableCell>
+          {users.map((u) => (
+            <TableRow key={u._id}>
+              <TableCell className="font-medium">{u.name}</TableCell>
+              <TableCell>
+                {u.uname}
+                {user?.id}
+              </TableCell>
+              <TableCell>{u.role}</TableCell>
               <TableCell className="flex justify-end items-center gap-4">
-                <Edit className="size-4 text-green-500" />
-                <Trash2 className="size-4 text-rose-500" />
+                {user._id !== u._id && (
+                  <UpdateRoleModal initialFormData={u}>
+                    <Edit className="size-4 text-sky-500 cursor-pointer" />
+                  </UpdateRoleModal>
+                )}
+                <SimpleDeleteModal
+                  onSubmit={handleDelete}
+                  title="Are you sure you want to delete this user?"
+                  info={u.name}
+                  id={u._id}
+                  isLoading={isLoading}
+                >
+                  <Trash2 className="size-4 text-rose-500 cursor-pointer" />
+                </SimpleDeleteModal>
               </TableCell>
             </TableRow>
           ))}

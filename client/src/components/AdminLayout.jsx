@@ -9,11 +9,12 @@ import {
 import { FileSpreadsheet, LogOut } from "lucide-react";
 import { toast } from "sonner";
 import { resetTokenAndCredentials } from "../redux/auth-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const AdminLayout = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   const [sidebarOpen, setSidebarOpen] = useState(FileSpreadsheet);
 
   const handleLogout = () => {
@@ -32,12 +33,12 @@ const AdminLayout = () => {
           />
           <div className="flex items-center gap-2">
             <LogOut
-              className="size-8 p-2 bg-gray-100 rounded"
+              className="size-8 p-2 bg-gray-100 rounded cursor-pointer"
               onClick={handleLogout}
             />
             <Avatar className="size-8">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src={user?.pro_pic || ""} alt="User" className="object-cover" />
+              <AvatarFallback className="text-sm">{user?.name?.slice(0, 2)?.toUpperCase()}</AvatarFallback>
             </Avatar>
           </div>
         </header>

@@ -52,6 +52,28 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
+export const updateProfile = createAsyncThunk(
+  "user/update-profile",
+  async (data, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_URL}/api/user`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || "Server error");
+    }
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -89,7 +111,7 @@ export const authSlice = createSlice({
         state.isLoadingAuth = false;
         state.isAuthenticated = true;
         state.user = action.payload.user;
-        state.role = action.payload.user.role;
+        state.role = action.payload.role;
         state.authChecked = true;
       })
       .addCase(checkAuth.rejected, (state) => {
@@ -106,6 +128,16 @@ export const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(resetPassword.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(updateProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.user;
+      })
+      .addCase(updateProfile.rejected, (state) => {
         state.isLoading = false;
       });
   },
