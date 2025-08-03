@@ -15,7 +15,6 @@ const ImageUploadModal = ({
   children,
   title = "Upload Image",
   oldImage = "",
-  fieldName = "image",
   name = "image",
   isLoading = false,
   onSubmit = () => {},

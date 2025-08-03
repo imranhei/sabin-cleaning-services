@@ -1,29 +1,50 @@
-// components/RichTextEditor.jsx
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import { useEffect } from 'react'
+import React, { useRef, useMemo } from "react";
+import JoditEditor from "jodit-react";
 
-const RichTextEditor = ({ value, onChange }) => {
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: value,
-    onUpdate: ({ editor }) => {
-      onChange(editor.getHTML()) // Send HTML to form
+const RichTextEditor = ({ value, onChange, readOnly = false }) => {
+  const editor = useRef(null);
+
+  const config = useMemo(() => ({
+    readonly: readOnly,
+    placeholder: "Write the blog content here...",
+    height: 400,
+    toolbarAdaptive: false,
+    buttons: [
+      "bold",
+      "italic",
+      "underline",
+      "strikethrough",
+      "ul",
+      "ol",
+      "align",
+      "outdent",
+      "indent",
+      "font",
+      "fontsize",
+      "brush",
+      "paragraph",
+      "link",
+      "image",
+      "table",
+      "undo",
+      "redo",
+      "hr",
+      "eraser",
+      "fullsize",
+    ],
+    uploader: {
+      insertImageAsBase64: true,
     },
-  })
-
-  // Sync external value
-  useEffect(() => {
-    if (editor && value !== editor.getHTML()) {
-      editor.commands.setContent(value)
-    }
-  }, [value, editor])
+  }), [readOnly]);
 
   return (
-    <div className="border p-4 rounded bg-white">
-      <EditorContent editor={editor} />
-    </div>
-  )
-}
+    <JoditEditor
+      ref={editor}
+      value={value}
+      config={config}
+      onChange={onChange}
+    />
+  );
+};
 
-export default RichTextEditor
+export default RichTextEditor;

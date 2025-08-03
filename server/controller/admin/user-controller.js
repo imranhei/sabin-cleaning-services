@@ -66,7 +66,7 @@ export const updateUser = async (req, res) => {
 
     if (file) {
       if (user.pro_pic) {
-        await deleteCloudinaryImage(user.pro_pic);
+        await deleteCloudinaryImage(user.pro_pic, "pro_pic");
       }
 
       const result = await imageUploadUtil(file.buffer, "pro_pic");

@@ -18,7 +18,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // Image upload utility function
-async function imageUploadUtil(buffer, folder = "profile-images") {
+async function imageUploadUtil(buffer, folder = "") {
   const base64 = buffer.toString("base64");
   const dataUri = `data:image/jpeg;base64,${base64}`;
   const result = await cloudinary.uploader.upload(dataUri, {
@@ -28,10 +28,10 @@ async function imageUploadUtil(buffer, folder = "profile-images") {
   return result;
 }
 
-async function deleteCloudinaryImage(imageUrl) {
+async function deleteCloudinaryImage(imageUrl, folder = "") {
   if (!imageUrl) return;
   const publicId = imageUrl.split("/").slice(-1)[0].split(".")[0];
-  await cloudinary.uploader.destroy(`profile-images/${publicId}`);
+  await cloudinary.uploader.destroy(`${folder}/${publicId}`);
 }
 
 export { upload, imageUploadUtil, deleteCloudinaryImage  };

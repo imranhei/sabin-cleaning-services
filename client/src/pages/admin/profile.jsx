@@ -49,7 +49,7 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="flex-col space-y-4 border rounded p-6 max-w-[500px] w-96">
+      <div className="flex-col space-y-4 border rounded p-6 w-full max-w-[450px] min-w-80">
         <Avatar className="size-40 mx-auto relative">
           <AvatarImage
             src={user?.pro_pic ? user.pro_pic : ""}

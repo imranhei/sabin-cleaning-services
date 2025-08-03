@@ -75,9 +75,9 @@ const Home = () => {
                   />
                 ))}
               </div>
-              <p className="text-white text-xs font-semibold text-center">
+              {/* <p className="text-white text-xs font-semibold text-center">
                 5,000 Trusted Reviews
-              </p>
+              </p> */}
             </div>
           </div>
           <img

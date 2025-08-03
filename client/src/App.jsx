@@ -16,13 +16,14 @@ import AdminLayout from "./components/AdminLayout";
 import Dashboard from "./pages/admin/dashboard";
 import BlogDetails from "./pages/blogDetails";
 import Inbox from "./pages/admin/inbox";
-import BlogPost from "./pages/admin/blogPost";
+import AdminBlogForm from "./pages/admin/AdminBlogForm";
 import QuoteDetails from "./pages/admin/quoteDetails";
 import CalendarEvent from "./pages/admin/calendarEvent";
 import Users from "./pages/admin/users";
 import Profile from "./pages/admin/profile";
 import Register from "./pages/admin/register";
 import ChangePassword from "./pages/admin/changePassword";
+import AdminBlogList from "./pages/admin/AdminBlogList";
 
 function App() {
   return (
@@ -63,8 +64,15 @@ function App() {
             element={<Inbox trashed={true} title="Trash" />}
           />
           <Route path="trash/:id" element={<QuoteDetails />} />
-          <Route path="blogs" element={<BlogPost />} />
-          {/* <Route path="blogs/:id" element={<BlogPost />} /> */}
+          <Route path="blogs" element={<AdminBlogList />} />
+          <Route
+            path="blogs/create"
+            element={<AdminBlogForm mode="create" />}
+          />
+          <Route
+            path="blogs/edit/:blogId"
+            element={<AdminBlogForm mode="edit" />}
+          />
           <Route path="users" element={<Users />} />
           <Route path="profile" element={<Profile />} />
           <Route path="register" element={<Register />} />
