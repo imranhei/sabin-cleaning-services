@@ -8,7 +8,7 @@ import clean_house from "@/assets/home_clean.jpg";
 import { Phone, Star } from "lucide-react";
 import { services } from "@/config/constants";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   return (
