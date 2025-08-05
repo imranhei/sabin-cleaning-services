@@ -457,25 +457,6 @@ export const faqsData = [
 ];
 
 export const footerLinks = [
-  // {
-  //   title: "Our Company",
-  //   items: [
-  //     { title: "About", url: "/about" },
-  //     { title: "Maids? NO WAY!", url: "#" },
-  //     { title: "The Rwanda Project", url: "#" },
-  //     { title: "Blog", url: "/blog" },
-  //     { title: "Join Our Team", url: "#" },
-  //     { title: "OpsZone", url: "#" },
-  //   ],
-  // },
-  // {
-  //   title: "Let Us Help You",
-  //   items: [
-  //     { title: "Find a Location Near you", url: "#" },
-  //     { title: "Gift Certificates", url: "#" },
-  //     { title: "Contact Us", url: "#" },
-  //   ],
-  // },
   {
     title: "Our Services",
     items: [
@@ -490,44 +471,6 @@ export const footerLinks = [
       { title: "Driveway Wash", url: "driveway-wash" },
       { title: "Tile and Grout Cleaning", url: "tile-and-grout-cleaning" },
     ],
-  },
-];
-
-export const blogs = [
-  {
-    id: 1,
-    img: "https://weekendmaids.net/wp-content/uploads/2023/06/man-doing-professional-home-cleaning-service-1-1536x1024.jpg.webp",
-    date: "June 18, 2025",
-    title: "Things To Do Before Moving Into Your New San Diego House",
-    des: "House cleaning costs vary depending on three primary factors: If you have a smaller living space and hire a service for weekly cleaning, your average cost will prove much lower than a one-off cleaning of a large home with add-ons like fridge and oven cleaning. Here are some averages to give you a starting point",
-  },
-  {
-    id: 2,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLtVFVTa3xKFuUPC6kWKqM5ra7XGyu36CY4Q&s",
-    date: "June 17, 2025",
-    title: "Pet Owners: 10 Benefits of Professional House Cleaning",
-    des: "We love our pets! What a feeling it is to see your pup's tail wag when you walk through the door or hear the soothing purr of your cat curling up by your side. But as much as we love our furry friends, pet ownership comes with challenges, especially when it comes to keeping your",
-  },
-  {
-    id: 3,
-    img: "https://media.angi.com/s3fs-public/female-janitor-vacuums-living-room.jpg",
-    date: "June 05, 2025",
-    title: "House Cleaning: 3 Best Ways to Prepare for the House Cleaner",
-    des: "Hiring a professional house cleaning service can be a game-changer for keeping your home clean and organized. However, to maximize their visit, it's essential to prepare your space so they can focus on thorough house cleaning rather than basic tidying up. Here are the 3 best ways to prepare for your house cleaner's arrival",
-  },
-  {
-    id: 4,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFDhGI_STI6snV9k09_CRqfbp8UE4Q3mGLaw&s",
-    date: "May 30, 2025",
-    title: "Home Cleaning Tips: Win the Battle Against Tulsa's 4 Seasons",
-    des: "Each year, Tulsa's four seasons bring both beauty and challenges. While the weather showcases the magic of America's Heartland, it also introduces cleaning hurdles like dirt, dust, and allergens. Here's some cleaning tips to tackle these challenges season by season: 1. Winter: Snow, Mud, and Dirt on the Plains The Challenge:Tulsa winters are cold",
-  },
-  {
-    id: 5,
-    img: "https://www.pristinehome.com.au/wp-content/uploads/2018/07/How-to-Choose-the-Best-House-Cleaning-Service.jpg",
-    date: "March 04, 2025",
-    title: "10 Tips: How to Choose the Best Home Cleaning Service for You",
-    des: "Finding the right home cleaning service isn't always easy. With so many options available, it can feel overwhelming to figure out which one is the best fit for your unique needs. But don't worry! We're here to guide you through the process with these 10 practical tips. Whether you're searching for a one-time deep clean",
   },
 ];
 

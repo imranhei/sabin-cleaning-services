@@ -12,6 +12,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.auth);
   const [editableName, setEditableName] = useState(user?.name || "");
+  const [open, setOpen] = useState(false);
 
   const handleUpdate = () => {
     if (editableName && editableName !== user.name) {
@@ -35,6 +36,7 @@ const Profile = () => {
     dispatch(updateProfile(formData)).then((res) => {
       if (res.payload?.success) {
         toast.success("Image updated successfully");
+        setOpen(false);
       } else {
         toast.error(res.payload || "Something went wrong");
       }
@@ -60,6 +62,8 @@ const Profile = () => {
             {user?.name.slice(0, 2)?.toUpperCase()}
           </AvatarFallback>
           <ImageUploadModal
+            open={open}
+            setOpen={setOpen}
             title="Upload Image"
             fieldName="image"
             isLoading={isLoading}

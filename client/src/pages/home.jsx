@@ -8,14 +8,29 @@ import clean_house from "@/assets/home_clean.jpg";
 import { Phone, Star } from "lucide-react";
 import { services } from "@/config/constants";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>
+          Sabin Cleaning Service | Professional Cleaning Services Australia
+        </title>
+        <meta
+          name="description"
+          content="Sabin Cleaning Service offers expert residential, commercial, and end of lease cleaning services across Sydney and other parts of Australia. Eco-friendly, reliable, and affordable."
+        />
+        <meta
+          name="keywords"
+          content="cleaning services Australia, house cleaning, commercial cleaning, end of lease cleaning, residential cleaning Sydney, eco-friendly cleaning, office cleaning"
+        />
+        <link rel="canonical" href="https://sabincleaning.com.au" />
+      </Helmet>
       <div className="w-full min-h-[90vh] relative flex items-center justify-center py-10">
         <img
           src="https://res.cloudinary.com/dcuphhnil/image/upload/v1752939210/SCS_cover_dnvsac.jpg"
-          alt="Hero Banner"
+          alt="Cleaning services Australia"
           className="absolute top-0 left-0 w-full h-full object-cover object-top z-0 brightness-50"
         />
         <div className="absolute top-6 right-0 w-full">
@@ -26,9 +41,9 @@ const Home = () => {
           </div>
         </div>
         <div className="container max-w-7xl px-4 z-10 text-white space-y-6">
-          <h1 className="lg:text-7xl sm:text-5xl text-4xl font-bold">
+          <h2 className="lg:text-7xl sm:text-5xl text-4xl font-bold">
             Simplify Life.
-          </h1>
+          </h2>
           <h2 className="lg:text-7xl sm:text-5xl text-4xl font-bold">
             Delegate Cleaning
           </h2>
@@ -39,12 +54,12 @@ const Home = () => {
                 className="flex items-center gap-2 sm:text-lg text-sm"
               >
                 <item.icon className="bg-[#79c043] p-1.5 size-8 rounded-full" />
-                <p>{item.title}</p>
+                <h2>{item.title}</h2>
               </div>
             ))}
           </div>
           <QuoteModal>
-            <Button className="bg-[#79c043] rounded-full px-12 py-6 text-base">
+            <Button className="bg-[#79c043] rounded-full px-12 py-6 text-base" aria-label="Get a free cleaning quote">
               Get a Quote
             </Button>
           </QuoteModal>
@@ -56,13 +71,13 @@ const Home = () => {
           <div className="flex justify-between gap-6 pb-[calc(40%)] w-full">
             <img
               src={happy_clinet}
-              alt="happy_clinet"
+              alt="Professional cleaning services Australia"
               className="rounded-xl w-3/5 h-[50vh] object-cover"
             />
             <div className="p-4 h-fit rounded-xl bg-[#79c043] flex flex-col justify-center gap-2">
-              <h1 className="text-white sm:text-5xl text-3xl font-bold text-center">
+              <p className="text-white sm:text-5xl text-3xl font-bold text-center">
                 5.0
-              </h1>
+              </p>
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }, (_, index) => (
                   <Star
@@ -82,20 +97,21 @@ const Home = () => {
           </div>
           <img
             src={clean_house}
-            alt=""
+            alt="Residential cleaning Australia"
             className="absolute bottom-0 right-0 rounded-xl w-2/3 h-[50vh] object-cover"
           />
         </div>
         <div className="flex-1 flex flex-col gap-4 lg:pt-0 pt-20">
           <h1 className="sm:text-3xl text-2xl font-bold text-muted-foreground">
-            Professional residential and commercial cleaning service in Sydney,
-            Australia.
+            Trusted Residential & Commercial Cleaning Services in Sydney,
+            Australia
           </h1>
           <p className="text-muted-foreground text-justify">
-            Sabin Cleaning Service proudly combines over 20 years of team
-            expertise with a long-standing commitment to using environmentally
-            friendly cleaning products. We embraced eco-friendly practices well
-            before the recent trend toward all-natural products.
+            Sabin Cleaning Service proudly brings over 20 years of experience
+            providing high-quality **residential cleaning**, **commercial
+            cleaning**, and **end of lease cleaning** services in **Sydney and
+            across Australia**. We use eco-friendly products and tailor our
+            cleaning solutions to meet your specific needs.
           </p>
           <div className="grid grid-cols-3 gap-4 mt-6">
             {services.slice(0, 6).map((service, index) => (
@@ -104,9 +120,9 @@ const Home = () => {
                 key={index}
               >
                 <service.icon className="sm:size-12 size-8 group-hover:text-white text-[#79c043] duration-200" />
-                <h1 className="uppercase sm:text-base text-sm text-center font-semibold text-muted-foreground group-hover:text-white duration-200">
+                <h3 className="uppercase sm:text-base text-sm text-center font-semibold text-muted-foreground group-hover:text-white duration-200">
                   {service.title}
-                </h1>
+                </h3>
               </div>
             ))}
           </div>
@@ -145,7 +161,7 @@ const Home = () => {
             <div className="flex flex-wrap items-center sm:gap-4 gap-2 gap-y-4">
               <QuoteModal>
                 <Button className="bg-[#79c043] rounded-full px-12 py-6 text-base">
-                  Get a Quote
+                  Get a Free Cleaning Quote
                 </Button>
               </QuoteModal>
               <div className="flex items-center gap-2 text-muted-foreground">
@@ -158,7 +174,11 @@ const Home = () => {
             </div>
           </div>
           <div className="p-6 overflow-hidden">
-            <img src={cleaned_room} alt="" className="rounded-xl" />
+            <img
+              src={cleaned_room}
+              alt="House cleaning Australia"
+              className="rounded-xl"
+            />
           </div>
         </div>
       </div>
@@ -170,7 +190,7 @@ const Home = () => {
             className="h-[330px] w-80 flex flex-col items-center gap-2 text-center bg-gray-100 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
           >
             <item.icon className="bg-[#79c043] text-white p-2 size-12 rounded-full" />
-            <h3 className="font-semibold text-lg">{item.title}</h3>
+            <h1 className="font-semibold text-lg">{item.title}</h1>
             <p className="text-muted-foreground text-justify">
               {item.description}
             </p>

@@ -10,8 +10,10 @@ import { X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useNavigate } from "react-router-dom";
 
 const AdminBlogForm = ({ mode }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { blogId } = useParams();
   const { currentBlog, isLoading } = useSelector((state) => state.blog);
@@ -100,12 +102,14 @@ const AdminBlogForm = ({ mode }) => {
         dispatch(createBlog(formData)).then((res) => {
           if (res.payload?.success) {
             toast.success("Blog created successfully");
+            navigate("/admin/blogs");
           }
         })
       } else {
         dispatch(updateBlog({ blogId, formData })).then((res) => {
           if (res.payload?.success) {
             toast.success("Blog updated successfully");
+            navigate("/admin/blogs");
           }
         })
       }
@@ -115,16 +119,6 @@ const AdminBlogForm = ({ mode }) => {
     } finally {
     }
   };
-
-  // const resetForm = () => {
-  //   setBlog({
-  //     title: "",
-  //     description: "",
-  //     banner: "",
-  //     doc: "",
-  //     gallery: [],
-  //   });
-  // };
 
   return (
     <div className="min-h-screen">
@@ -282,7 +276,7 @@ const AdminBlogForm = ({ mode }) => {
             <p className="text-gray-600 mb-6">
               {blog.description || "No description provided"}
             </p>
-            <div className="prose max-w-none ">{HTMLReactParser(blog.doc)}</div>
+            <div className="prose max-w-none ">{HTMLReactParser(blog.doc || "")}</div>
 
             {blog?.gallery?.length > 0 && (
               <div>

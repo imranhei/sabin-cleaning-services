@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useBreadcrumbJson } from "@/hooks/useBreadcrumbJson";
 import RenderBreadcrumb from "@/components/common/RenderBreadcrumb";
-import { blogs } from "@/config/constants";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { ArrowRight, CalendarCheck, CircleArrowRight } from "lucide-react";
+import { CalendarCheck, CircleArrowRight, Loader } from "lucide-react";
+import { getBlogs } from "@/redux/admin/blog-slice";
 
 const Blogs = () => {
+  const dispatch = useDispatch();
   const breadcrumbData = useBreadcrumbJson();
+  const { blogs, isLoading } = useSelector((state) => state.blog);
+
+  useEffect(() => {
+    dispatch(getBlogs());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center w-full min-h-[85vh]">
+        <Loader className="animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full min-h-[100vh] relative">
@@ -26,27 +41,28 @@ const Blogs = () => {
             <Link
               key={index}
               className="relative flex flex-col rounded-xl overflow-hidden sm:w-80 w-4/5 h-[480px] shadow-lg hover:-translate-y-2 transform duration-300 group"
-              to={`/blogs/${blog.id}`}
+              to={`/blogs/${blog._id}`}
             >
               <div className="h-1/2 w-full">
                 <img
-                  src={blog.img}
+                  src={blog.banner}
                   alt=""
                   className="h-full w-full object-cover"
                 />
               </div>
               <div className="p-4 space-y-2">
-                <p className="text-sm text-[#79c043] flex items-center gap-1"><CalendarCheck size={16} />{blog.date}</p>
+                <p className="text-sm text-[#79c043] flex items-center gap-1">
+                  <CalendarCheck size={16} />
+                  {blog.createdAt.split("T")[0] || ""}
+                </p>
                 <h2 className="text-lg font-semibold text-sky-800">
                   {blog.title || ""}
                 </h2>
                 <h2 className="text-muted-foreground line-clamp-3 text-justify">
-                  {blog.des || ""}
+                  {blog.description || ""}
                 </h2>
               </div>
-              <div
-                className="absolute bottom-4 left-4"
-              >
+              <div className="absolute bottom-4 left-4">
                 <div className="flex items-center gap-1 group-hover:text-[#79c043]">
                   Read More <CircleArrowRight size={16} />
                 </div>

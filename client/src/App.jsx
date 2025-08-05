@@ -24,6 +24,7 @@ import Profile from "./pages/admin/profile";
 import Register from "./pages/admin/register";
 import ChangePassword from "./pages/admin/changePassword";
 import AdminBlogList from "./pages/admin/AdminBlogList";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -80,6 +81,7 @@ function App() {
         </Route>
 
         <Route path="auth/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <GoToTopButton />

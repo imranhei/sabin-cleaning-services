@@ -13,6 +13,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const ImageUploadModal = ({
   children,
+  open,
+  setOpen,
   title = "Upload Image",
   oldImage = "",
   name = "image",
@@ -21,7 +23,6 @@ const ImageUploadModal = ({
 }) => {
   const inputRef = useRef(null);
   const [imageFile, setImageFile] = useState(null);
-  const [open, setOpen] = useState(false);
 
   const handleChange = (e) => {
     const file = e.target.files?.[0];
