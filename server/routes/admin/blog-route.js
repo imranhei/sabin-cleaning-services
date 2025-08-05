@@ -11,8 +11,8 @@ import { upload } from "../../helper/cloudinary.js";
 
 const router = express.Router();
 
-router.get("/", checkAuth, getBlogs);
-router.get("/:blogId", checkAuth, getBlog);
+router.get("/", getBlogs);
+router.get("/:blogId", getBlog);
 router.post(
   "/",
   checkAuth,
