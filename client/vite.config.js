@@ -1,17 +1,29 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
+// vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+export default defineConfig(({ mode, command }) => {
+  const isProduction = mode === 'production';
+  const isSSR = command === 'build' && process.env.SSR === 'true';
+  
+  return {
+    plugins: [react()],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
     },
-  },
-  server: {
-    host: true, // or use host: '0.0.0.0'
-    port: 5173,
-  },
+    build: {
+      outDir: isSSR ? 'dist/server' : 'dist/client',
+      emptyOutDir: true,
+      ssr: isSSR,
+      rollupOptions: isSSR ? {
+        input: './src/entry-server.jsx',
+      } : undefined,
+    },
+    ssr: {
+      noExternal: ['react-helmet', 'react-router-dom'],
+    },
+  };
 });
