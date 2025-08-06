@@ -108,9 +108,9 @@ const Home = () => {
           </h1>
           <p className="text-muted-foreground text-justify">
             Sabin Cleaning Service proudly brings over 20 years of experience
-            providing high-quality residential cleaning, commercial
-            cleaning, and end of lease cleaning services in Sydney and
-            across Australia. We use eco-friendly products and tailor our
+            providing high-quality **residential cleaning**, **commercial
+            cleaning**, and **end of lease cleaning** services in **Sydney and
+            across Australia**. We use eco-friendly products and tailor our
             cleaning solutions to meet your specific needs.
           </p>
           <div className="grid grid-cols-3 gap-4 mt-6">

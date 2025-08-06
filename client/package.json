@@ -4,11 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node api/server.js",
-    "build:client": "vite build",
-    "build:server": "cross-env SSR=true vite build",
-    "build": "npm run build:client && npm run build:server",
-    "preview": "cross-env NODE_ENV=production node api/server.js"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",
@@ -28,7 +27,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "express": "^5.1.0",
     "html-react-parser": "^5.2.6",
     "jodit-react": "^5.2.19",
     "lucide-react": "^0.525.0",
@@ -44,8 +42,7 @@
     "recharts": "^2.15.4",
     "sonner": "^2.0.6",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss-animate": "^1.0.7",
-    "vite-plugin-ssr": "^0.4.142"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
@@ -54,7 +51,6 @@
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",
     "autoprefixer": "^10.4.21",
-    "cross-env": "^10.0.0",
     "eslint": "^9.29.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
