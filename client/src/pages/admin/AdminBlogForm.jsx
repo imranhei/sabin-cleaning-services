@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { createBlog, updateBlog, getBlog } from "@/redux/admin/blog-slice";
-import { X } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -104,14 +104,14 @@ const AdminBlogForm = ({ mode }) => {
             toast.success("Blog created successfully");
             navigate("/admin/blogs");
           }
-        })
+        });
       } else {
         dispatch(updateBlog({ blogId, formData })).then((res) => {
           if (res.payload?.success) {
             toast.success("Blog updated successfully");
             navigate("/admin/blogs");
           }
-        })
+        });
       }
     } catch (err) {
       console.error("Blog submit error", err);
@@ -120,14 +120,32 @@ const AdminBlogForm = ({ mode }) => {
     }
   };
 
+  const resetForm = () => {
+    setBlog({
+      title: "",
+      description: "",
+      banner: "",
+      doc: "",
+      gallery: [],
+    });
+  };
+
   return (
     <div className="min-h-screen">
-      <div className="max-w-4xl mx-auto space-y-4">
-        {/* <div className="flex justify-between items-center"> */}
+      <div className="relative max-w-4xl mx-auto space-y-4">
         <h1 className="text-2xl text-center font-bold text-gray-800">
           {mode === "create" ? "Create Blog" : "Edit Blog"}
         </h1>
-        {/* </div> */}
+        <Button
+          variant="outline"
+          className="absolute -top-4 left-0"
+          onClick={() => {
+            resetForm();
+            navigate(-1);
+          }}
+        >
+          <ArrowLeft className="mr-0" />
+        </Button>
 
         <form
           onSubmit={handleSubmit}
@@ -242,7 +260,14 @@ const AdminBlogForm = ({ mode }) => {
             )}
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-2">
+            <Button
+              type="button"
+              variant="destructive"
+              onClick={() => resetForm()}
+            >
+              Reset Form
+            </Button>
             <Button type="submit" disabled={isLoading}>
               {isLoading
                 ? "Saving..."
@@ -276,7 +301,9 @@ const AdminBlogForm = ({ mode }) => {
             <p className="text-gray-600 mb-6">
               {blog.description || "No description provided"}
             </p>
-            <div className="prose max-w-none ">{HTMLReactParser(blog.doc || "")}</div>
+            <div className="prose max-w-none ">
+              {HTMLReactParser(blog.doc || "")}
+            </div>
 
             {blog?.gallery?.length > 0 && (
               <div>

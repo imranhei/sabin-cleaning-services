@@ -3,6 +3,7 @@ import {
   ArrowLeft,
   CircleCheckBig,
   CircleX,
+  Edit,
   History,
   Loader,
   Printer,
@@ -56,6 +57,7 @@ const QuoteDetails = () => {
 
   const [formData, setFormData] = useState("");
   const [isLoadingSave, setIsLoadingSave] = useState(false);
+  const [isEditingNote, setIsEditingNote] = useState(false);
 
   const handleStatus = (status) => {
     dispatch(updateQuote({ id: quote._id, status }));
@@ -88,6 +90,7 @@ const QuoteDetails = () => {
     dispatch(updateQuote({ id: quote?._id, note: formData })).then((res) => {
       if (res.payload?.success) {
         toast.success("Note updated successfully");
+        setIsEditingNote(false);
       } else {
         toast.error(res.payload || "Something went wrong");
       }
@@ -185,7 +188,15 @@ const QuoteDetails = () => {
         </div>
         {quote?.note && (
           <div>
-            <p className="font-semibold">Note :</p>
+            <div className="flex items-center gap-4">
+              <p className="font-semibold">Note :</p>
+              <Button
+                className="bg-green-100 hover:bg-green-200 shadow-none p-1 h-6"
+                onClick={() => setIsEditingNote(true)}
+              >
+                <Edit className="size-4 text-green-500" />
+              </Button>
+            </div>
             <p className="text-muted-foreground whitespace-pre-line">
               {quote?.note}
             </p>
@@ -219,25 +230,27 @@ const QuoteDetails = () => {
         )}
 
         <hr />
-        <form onSubmit={handleSubmit}>
-          <div className="space-y-2">
-            <div className="font-semibold">
-              {quote?.note ? "Edit Note" : "Add Note"}
+        {(!quote?.note || isEditingNote) && (
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-2">
+              <div className="font-semibold">
+                {quote?.note ? "Edit Note" : "Add Note"}
+              </div>
+              <Textarea
+                placeholder="Type your note here..."
+                className="min-h-32 max-h-48"
+                value={formData}
+                onChange={(e) => setFormData(e.target.value)}
+              />
+              <div className="flex justify-end">
+                <Button className="max-w-40 w-full bg-[#79c043]" type="submit">
+                  {isLoadingSave && <Loader className="mr-2 animate-spin" />}{" "}
+                  Save Note
+                </Button>
+              </div>
             </div>
-            <Textarea
-              placeholder="Type your note here..."
-              className="min-h-32 max-h-48"
-              value={formData}
-              onChange={(e) => setFormData(e.target.value)}
-            />
-            <div className="flex justify-end">
-              <Button className="max-w-40 w-full bg-[#79c043]" type="submit">
-                {isLoadingSave && <Loader className="mr-2 animate-spin" />} Save
-                Note
-              </Button>
-            </div>
-          </div>
-        </form>
+          </form>
+        )}
       </div>
     </div>
   );

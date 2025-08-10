@@ -60,15 +60,7 @@ const blogDetails = () => {
         <div className="text-justify whitespace-pre-wrap">
           {HTMLReactParser(currentBlog?.doc || "")}
         </div>
-        {slc !== 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6">
-            {currentBlog?.gallery.slice(0, slc).map((item, index) => (
-              <div key={index}>
-                <img src={item} alt="" className="w-full h-full object-cover" />
-              </div>
-            ))}
-          </div>
-        ) : (
+        {slc === 1 && currentBlog?.gallery.length !== 1 ? (
           <div className="relative mx-auto w-96 group pt-6">
             <img
               src={currentBlog?.gallery[0]}
@@ -81,6 +73,14 @@ const blogDetails = () => {
             >
               See more photos
             </Button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6">
+            {currentBlog?.gallery.slice(0, slc).map((item, index) => (
+              <div key={index}>
+                <img src={item} alt="" className="w-full h-full object-cover" />
+              </div>
+            ))}
           </div>
         )}
       </div>

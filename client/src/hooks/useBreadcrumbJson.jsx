@@ -1,5 +1,8 @@
 import { useLocation } from "react-router-dom";
 
+// Optional: Adjust this function to match your ID pattern
+const isMongoId = (str) => /^[a-f\d]{24}$/i.test(str);
+
 export const useBreadcrumbJson = () => {
   const location = useLocation();
   const segments = location.pathname.split("/").filter(Boolean);
@@ -13,6 +16,9 @@ export const useBreadcrumbJson = () => {
     const path = "/" + segments.slice(0, index + 1).join("/");
     const isLast = index === segments.length - 1;
 
+    // Skip if it's an ID
+    if (isMongoId(segment)) return;
+    
     // Format label: e.g., 'floor-cleaning' -> 'Floor Cleaning'
     const label = decodeURIComponent(segment)
       .replace(/-/g, " ")
