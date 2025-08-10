@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/breadcrumb"; // adjust path if needed
 
 const RenderBreadcrumb = ({ items }) => {
-  console.log(items);
   return (
     <Breadcrumb>
       <BreadcrumbList>
