@@ -1,9 +1,10 @@
-import React, { useRef, useMemo } from "react";
-import JoditEditor from "jodit-react";
+import React, { useRef, useMemo, useState, useEffect } from "react";
 
 const RichTextEditor = ({ value, onChange, readOnly = false }) => {
+  const [JoditEditor, setJoditEditor] = useState(null);
   const editor = useRef(null);
 
+  // Same config memoized
   const config = useMemo(() => ({
     readonly: readOnly,
     placeholder: "Write the blog content here...",
@@ -36,6 +37,18 @@ const RichTextEditor = ({ value, onChange, readOnly = false }) => {
       insertImageAsBase64: true,
     },
   }), [readOnly]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      import("jodit-react").then((module) => {
+        setJoditEditor(() => module.default);
+      });
+    }
+  }, []);
+
+  if (!JoditEditor) {
+    return <div>Loading editor...</div>;
+  }
 
   return (
     <JoditEditor

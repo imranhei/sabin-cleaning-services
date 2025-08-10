@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node api/server.js",
-    "build:client": "vite build",
-    "build:server": "cross-env SSR=true vite build",
+    "dev": "node server.js",
+    "build:client": "vite build --mode production --outDir dist/client",
+    "build:server": "vite build --mode production --ssr src/entry-server.jsx --outDir dist/server",
     "build": "npm run build:client && npm run build:server",
-    "preview": "cross-env NODE_ENV=production node api/server.js"
+    "preview": "cross-env NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",
@@ -27,6 +27,7 @@
     "axios": "^1.10.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "compression": "^1.8.1",
     "date-fns": "^4.1.0",
     "express": "^5.1.0",
     "html-react-parser": "^5.2.6",
@@ -42,6 +43,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.3",
     "recharts": "^2.15.4",
+    "sirv": "^3.0.1",
     "sonner": "^2.0.6",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",

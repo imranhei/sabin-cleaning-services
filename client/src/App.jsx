@@ -25,8 +25,11 @@ import Register from "./pages/admin/register";
 import ChangePassword from "./pages/admin/changePassword";
 import AdminBlogList from "./pages/admin/AdminBlogList";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
 
 function App() {
+
+  console.log("This runs in both server and browser ...", typeof window);
   return (
     <div className="App">
       <ScrollToTop />
