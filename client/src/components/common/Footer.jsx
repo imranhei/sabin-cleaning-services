@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import QuoteModal from "@/components/modal/QuoteModal";
+import NoSSR from "../NoSSR";
 
 const Footer = () => {
   return (
@@ -69,31 +70,33 @@ const Footer = () => {
             ))}
           </div>
           <div className="text-muted-foreground sm:hidden block">
-            <Accordion
-              type="single"
-              collapsible
-              className="w-full space-y-2"
-              //   defaultValue="item-1"
-            >
-              {footerLinks.map((link, index) => (
-                <AccordionItem value={`item-${index + 1}`} key={index}>
-                  <AccordionTrigger className="[&[data-state=open]]:bg-gray-200 [&[data-state=open]]:text-muted-foreground p-4">
-                    {link.title}
-                  </AccordionTrigger>
-                  <AccordionContent className="flex flex-col gap-0 text-balance pt-0">
-                    {link.items.map((item, idx) => (
-                      <Link
-                        to={`/services/${item.url}`}
-                        key={idx}
-                        className="hover:text-[#79c043] cursor-pointer pt-2"
-                      >
-                        {item.title}
-                      </Link>
-                    ))}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <NoSSR>
+              <Accordion
+                type="single"
+                collapsible
+                className="w-full space-y-2"
+                //   defaultValue="item-1"
+              >
+                {footerLinks.map((link, index) => (
+                  <AccordionItem value={`item-${index + 1}`} key={index}>
+                    <AccordionTrigger className="[&[data-state=open]]:bg-gray-200 [&[data-state=open]]:text-muted-foreground p-4">
+                      {link.title}
+                    </AccordionTrigger>
+                    <AccordionContent className="flex flex-col gap-0 text-balance pt-0">
+                      {link.items.map((item, idx) => (
+                        <Link
+                          to={`/services/${item.url}`}
+                          key={idx}
+                          className="hover:text-[#79c043] cursor-pointer pt-2"
+                        >
+                          {item.title}
+                        </Link>
+                      ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </NoSSR>
           </div>
         </div>
       </div>

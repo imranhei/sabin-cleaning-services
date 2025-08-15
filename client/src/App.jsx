@@ -1,20 +1,25 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+
 import Home from "./pages/home.jsx";
-import CheckAuth from "./components/common/CheckAuth";
 import Layout from "./components/common/Layout";
 import FAQs from "./pages/faqs";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import Services from "./pages/services";
 import Blogs from "./pages/blogs";
-import ScrollToTop from "./components/ScrollToTop";
 import ServiceDetails from "./pages/serviceDetails";
-import GoToTopButton from "./components/common/GoToTopButton";
 import Login from "./pages/login";
+import BlogDetails from "./pages/blogDetails";
+import NotFound from "./pages/NotFound";
+
+import NoSSR from "./components/NoSSR";
+import ScrollToTop from "./components/ScrollToTop";
+import GoToTopButton from "./components/common/GoToTopButton";
+
+import CheckAuth from "./components/common/CheckAuth";
 import AdminLayout from "./components/AdminLayout";
 import Dashboard from "./pages/admin/dashboard";
-import BlogDetails from "./pages/blogDetails";
 import Inbox from "./pages/admin/inbox";
 import AdminBlogForm from "./pages/admin/AdminBlogForm";
 import QuoteDetails from "./pages/admin/quoteDetails";
@@ -24,26 +29,37 @@ import Profile from "./pages/admin/profile";
 import Register from "./pages/admin/register";
 import ChangePassword from "./pages/admin/changePassword";
 import AdminBlogList from "./pages/admin/AdminBlogList";
-import NotFound from "./pages/NotFound";
-import { useEffect } from "react";
 
 function App() {
-
-  console.log("This runs in both server and browser ...", typeof window);
   return (
-    <div className="App">
-      <ScrollToTop />
+    <div>
+      <NoSSR><ScrollToTop /></NoSSR>
 
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/test" element={<NoSSR><h1>test page</h1></NoSSR>} />
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/services/:slug" element={<ServiceDetails />} />
+          <Route
+            path="/services/:slug"
+            element={
+              <NoSSR>
+                <ServiceDetails />
+              </NoSSR>
+            }
+          />
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blogs/:slug" element={<BlogDetails />} />
+          <Route
+            path="/blogs/:slug"
+            element={
+              <NoSSR>
+                <BlogDetails />
+              </NoSSR>
+            }
+          />
         </Route>
 
         <Route

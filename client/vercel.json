@@ -12,6 +12,7 @@
       "dest": "/api/server.js"
     }
   ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client"
 }

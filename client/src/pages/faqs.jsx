@@ -8,6 +8,7 @@ import {
 import { faqsData } from "@/config/constants";
 import { useBreadcrumbJson } from "@/hooks/useBreadcrumbJson";
 import RenderBreadcrumb from "@/components/common/RenderBreadcrumb";
+import NoSSR from "@/components/NoSSR";
 
 const FAQs = () => {
   const breadcrumbData = useBreadcrumbJson();
@@ -25,21 +26,23 @@ const FAQs = () => {
         </div>
       </div>
       <div className="container mx-auto max-w-7xl px-4 py-8">
-        <Accordion
-          type="single"
-          collapsible
-          className="w-full space-y-6"
-          //   defaultValue="item-1"
-        >
-          {faqsData.map((faq, index) => (
-            <AccordionItem value={`item-${index + 1}`} key={index}>
-              <AccordionTrigger className="">{faq.question}</AccordionTrigger>
-              <AccordionContent className="">
-                <p className="whitespace-pre-wrap">{faq.answer}</p>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <NoSSR>
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full space-y-6"
+            //   defaultValue="item-1"
+          >
+            {faqsData.map((faq, index) => (
+              <AccordionItem value={`item-${index + 1}`} key={index}>
+                <AccordionTrigger className="">{faq.question}</AccordionTrigger>
+                <AccordionContent className="">
+                  <p className="whitespace-pre-wrap">{faq.answer}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </NoSSR>
       </div>
     </div>
   );

@@ -1,11 +1,8 @@
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import site_logo from "../../../public/Sabin_Clean_Sky_blue.png";
+import site_logo from "/Sabin_Clean_Sky_blue.png";
 import { menu } from "@/config/constants";
-
-import {
-  Accordion
-} from "@/components/ui/accordion";
+import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -14,7 +11,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import NoSSR from "../NoSSR";
 
 const Navbar = ({
   logo = {
@@ -41,21 +39,25 @@ const Navbar = ({
               {logo.title}
             </span>
           </Link>
+
           <div className="flex items-center gap-4">
             <div className="flex items-center">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {menu.map((item) => renderMenuItem(item))}
-                </NavigationMenuList>
-              </NavigationMenu>
+              {/* NoSSR wraps the Radix NavigationMenu to avoid hydration mismatch */}
+              <NoSSR>
+                <NavigationMenu>
+                  <NavigationMenuList>
+                    {menu.map((item) => renderMenuItem(item))}
+                  </NavigationMenuList>
+                </NavigationMenu>
+              </NoSSR>
             </div>
+
             <Button
               asChild
-              // variant="outline"
               size="sm"
               className="pointer-events-none bg-[#79c043]"
             >
-              <div className="font-bold">
+              <div className="font-bold flex gap-2 items-center text-white">
                 <Phone strokeWidth={3} />
                 <span className="text-base">{contact.phone.title}</span>
               </div>
@@ -75,7 +77,7 @@ const Navbar = ({
             </Link>
             <div className="flex items-center gap-2">
               <a
-                href="tel:+61 000 000 000"
+                href={`tel:${contact.phone.title}`}
                 className="bg-[#79c043] p-2 rounded text-white"
               >
                 <Phone size={20} />
@@ -117,11 +119,10 @@ const Navbar = ({
 
                     <Button
                       asChild
-                      variant="outline"
                       size="sm"
                       className="pointer-events-none bg-[#79c043]"
                     >
-                      <div className="font-semibold text-base text-white">
+                      <div className="font-semibold text-base text-white flex gap-2 items-center">
                         <Phone />
                         {contact.phone.title}
                       </div>
@@ -141,14 +142,18 @@ const renderMenuItem = (item) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger className="!bg-transparent font-semibold text-base z-50">
-          <Link to={item.url}>{item.title}</Link>
+        <NavigationMenuTrigger
+          className="!bg-transparent font-semibold text-base z-50"
+          id={`menu-trigger-${item.title}`}
+        >
+          {item.title}
         </NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground">
+        <NavigationMenuContent
+          className="bg-popover text-popover-foreground"
+          id={`menu-content-${item.title}`}
+        >
           {item.items.map((subItem, index) => (
-            <Link asChild key={index} to={`/services/${subItem.url}`} className="w-80">
-              <SubMenuLink item={subItem} />
-            </Link>
+            <SubMenuLink key={index} item={subItem} />
           ))}
         </NavigationMenuContent>
       </NavigationMenuItem>
@@ -195,11 +200,7 @@ const MobileMenuItem = ({ item, setOpen }) => {
         {openAccordion && (
           <div className="ml-4 mt-2">
             {item.items.map((subItem, index) => (
-              <SubMenuLink
-                key={index}
-                item={subItem}
-                setOpen={setOpen}
-              />
+              <SubMenuLink key={index} item={subItem} setOpen={setOpen} />
             ))}
           </div>
         )}

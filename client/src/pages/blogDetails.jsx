@@ -26,7 +26,6 @@ const blogDetails = () => {
       </div>
     );
   }
-  console.log(slc)
 
   return (
     <div className="w-full min-h-[90vh] relative">

@@ -9,7 +9,16 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb"; // adjust path if needed
 
+const useIsClient = () => {
+  const [isClient, setIsClient] = React.useState(false);
+  React.useEffect(() => setIsClient(true), []);
+  return isClient;
+};
+
 const RenderBreadcrumb = ({ items }) => {
+  const isClient = useIsClient();
+
+  if (!isClient) return null;
   return (
     <Breadcrumb>
       <BreadcrumbList>
