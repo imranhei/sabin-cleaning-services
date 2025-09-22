@@ -34,7 +34,7 @@ const About = () => {
           client's unique needs.
           <br />
           <br />
-          With over five years of company experience and a cleaning team with
+          With more than a year of company experience and a cleaning team with
           more than 20 years of hands-on cleaning expertise, we've built a
           strong reputation for excellence and customer satisfaction. Our
           experienced team understands the importance of cleanliness, hygiene,

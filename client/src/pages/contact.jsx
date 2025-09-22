@@ -1,7 +1,23 @@
 import React from "react";
 import { useBreadcrumbJson } from "@/hooks/useBreadcrumbJson";
 import RenderBreadcrumb from "@/components/common/RenderBreadcrumb";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MailCheck, MapPin, Phone, PhoneCall } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const teamMembers = [
+  {
+    name: "Martin Long",
+    role: "Commercial Cleaning",
+    phone: "0437 416 688",
+    email: "xyz@gmail.com",
+  },
+  {
+    name: "Jakir Khan Zack",
+    role: "End of Lease Cleaning",
+    phone: "0483 841 166",
+    email: "abc@gmail.com",
+  },
+];
 
 const Contact = () => {
   const breadcrumbData = useBreadcrumbJson();
@@ -25,10 +41,10 @@ const Contact = () => {
         <p className="sm:text-3xl font-semibold text-muted-foreground">
           Call us to get a free quote!
         </p>
-        
+
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Phone className="sm:size-6 size-4" />
-          +61 000 000 000
+          +61 449 897 958
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Mail className="sm:size-6 size-4" />
@@ -38,9 +54,59 @@ const Contact = () => {
           <MapPin className="sm:size-6 size-4" />
           38/299 Lakemba Street, Wiley Park, NSW-2195
         </div>
-        <p className="sm:text-xl mt-4 font-semibold text-muted-foreground">A Part of</p>
-        <p className="sm:text-3xl -mt-2 text-xl font-bold text-sky-800">Sabin & Sidney Group Pty Ltd​</p>
-        <p className="sm:text-2xl font-semibold text-muted-foreground">ACN 682 730 196</p>
+        <p className="sm:text-xl mt-4 font-semibold text-muted-foreground">
+          A Part of
+        </p>
+        <p className="sm:text-3xl -mt-2 text-xl font-bold text-sky-800">
+          Sabin & Sidney Group Pty Ltd​
+        </p>
+        <p className="sm:text-2xl font-semibold text-muted-foreground">
+          ACN 682 730 196
+        </p>
+
+        <h1 className="sm:text-3xl -mt-2 text-xl font-bold text-sky-800 text-center pt-6">
+          Meet our Team
+        </h1>
+        <section className="">
+          <div className="mx-auto text-center">
+            <p className="text-gray-600 text-lg mb-10">
+              Our dedicated professionals are here to provide top-notch cleaning
+              services.
+            </p>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              {teamMembers.map((member, index) => (
+                <Card
+                  key={index}
+                  className="shadow-md hover:shadow-lg transition rounded-xl"
+                >
+                  <CardHeader>
+                    <CardTitle className="text-2xl font-semibold text-sky-800">
+                      {member.name}
+                    </CardTitle>
+                    <p className="text-lg text-gray-500">{member.role}</p>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="flex items-center gap-2 text-gray-700">
+                      <PhoneCall className="w-4 h-4 text-sky-800" />
+                      <span>{member.phone}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-700">
+                      <MailCheck className="w-4 h-4 text-sky-800" />
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="hover:underline text-sky-800"
+                      >
+                        {member.email}
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+        <p></p>
       </div>
     </div>
   );

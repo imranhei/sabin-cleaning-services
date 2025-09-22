@@ -45,7 +45,7 @@ const Home = () => {
             Simplify Life.
           </h2>
           <h2 className="lg:text-7xl sm:text-5xl text-4xl font-bold">
-            Delegate Cleaning
+            Delegate Cleaning <span>(Cooming Soon)</span>
           </h2>
           <div className="flex flex-wrap sm:gap-6 gap-4">
             {Commitment.map((item, index) => (
@@ -59,7 +59,10 @@ const Home = () => {
             ))}
           </div>
           <QuoteModal>
-            <Button className="bg-[#79c043] rounded-full px-12 py-6 text-base" aria-label="Get a free cleaning quote">
+            <Button
+              className="bg-[#79c043] rounded-full px-12 py-6 text-base"
+              aria-label="Get a free cleaning quote"
+            >
               Get a Quote
             </Button>
           </QuoteModal>
@@ -107,11 +110,11 @@ const Home = () => {
             Australia
           </h1>
           <p className="text-muted-foreground text-justify">
-            Sabin Cleaning Service proudly brings over 20 years of experience
-            providing high-quality residential cleaning, commercial
-            cleaning, and end of lease cleaning services in Sydney and
-            across Australia. We use eco-friendly products and tailor our
-            cleaning solutions to meet your specific needs.
+            At Sabin Cleaning Service, our team brings over 20 years of
+            experience providing high-quality residential cleaning, commercial
+            cleaning, and end of lease cleaning services in Sydney and across
+            Australia. We use eco-friendly products and tailor our cleaning
+            solutions to meet your specific needs.
           </p>
           <div className="grid grid-cols-3 gap-4 mt-6">
             {services.slice(0, 6).map((service, index) => (
@@ -144,24 +147,25 @@ const Home = () => {
                 className="sm:size-12 size-8"
               />
               <h1 className="sm:text-4xl text-2xl font-bold text-muted-foreground line-clamp-2">
-                Call for Free Quote
+                Call for Quote
               </h1>
             </div>
             <p className="text-muted-foreground text-justify">
-              Want to know how much it will cost to clean your home? Call us or
-              use our easy online quote tool - it's fast, simple, and
-              convenient. Don't waste time waiting for someone to come over just
-              to give you an estimate. Instead, just call or message us with the
-              size of your home, number of bedrooms and bathrooms, the services
-              you need, and how often you'd like them. We'll send you a quick
-              and accurate quote. No walkthroughs are required. We base our
-              estimates only on the rooms and services you choose, and both can
-              be updated anytime to suit your needs.
+              Looking for a hassle-free cleaning quote? Give us a call or
+              request one online—it's quick, simple, and convenient. Forget the
+              wait for in-home walkthroughs. Instead, just share a few details
+              with us, such as your home size, the number of bedrooms and
+              bathrooms, the services you're looking for, and how often you'd
+              like them. With this information, we'll prepare a fast and
+              accurate estimate tailored to your needs. And the best part? If
+              you call us directly, you'll receive your personalized quotation
+              within one business day. Getting a cleaning quote has never been
+              easier!
             </p>
             <div className="flex flex-wrap items-center sm:gap-4 gap-2 gap-y-4">
               <QuoteModal>
                 <Button className="bg-[#79c043] rounded-full px-12 py-6 text-base">
-                  Get a Free Cleaning Quote
+                  Get a Quote
                 </Button>
               </QuoteModal>
               <div className="flex items-center gap-2 text-muted-foreground">
@@ -169,7 +173,7 @@ const Home = () => {
                 <span className="bg-[#79c043] p-2 rounded-full text-white flex items-center gap-1">
                   <Phone size={16} />
                 </span>
-                <span className="font-bold">+61 000 000 000</span>
+                <span className="font-bold">+61 449 897 958</span>
               </div>
             </div>
           </div>

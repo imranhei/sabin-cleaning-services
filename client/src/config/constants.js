@@ -368,9 +368,9 @@ export const comments = [
 
 export const Commitment = [
   {
-    title: "Instant Quotes",
+    title: "Same Day Quotes",
     description:
-      "Other cleaning companies perform a walkthrough before giving you an estimate. Sabin Cleaning Servies was the first to innovate over-the-phone pricing. We provide estimates solely based on the size of your home and the frequency of your cleanings.",
+      "At Sabin Cleaning Services, we make getting a quote simple and convenient. Our estimates are based on your home's size and cleaning frequency no walkthroughs required and we'll provide you with a same-day quote for your convenience.",
     icon: Grid2x2Check,
   },
   {
@@ -379,12 +379,12 @@ export const Commitment = [
       "Your life is busy. Your schedule changes. The next thing you know, people are visiting when you least expect it. We get it! We understand that our customers' lives are busy, and your cleaning service should relieve stress in every way. Need to reschedule? Not a problem.",
     icon: DollarSign,
   },
-  {
-    title: "No Contracts",
-    description:
-      "We realize our customers don't want to get locked into lengthy contracts. Sometimes when you're stuck in a contract, the quality can deteriorate over time. We choose to earn your loyalty with each and every cleaning.",
-    icon: ReceiptText,
-  },
+  // {
+  //   title: "No Contracts",
+  //   description:
+  //     "We realize our customers don't want to get locked into lengthy contracts. Sometimes when you're stuck in a contract, the quality can deteriorate over time. We choose to earn your loyalty with each and every cleaning.",
+  //   icon: ReceiptText,
+  // },
   {
     title: "We Love Our Customers",
     description:

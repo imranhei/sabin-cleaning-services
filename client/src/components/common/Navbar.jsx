@@ -24,7 +24,7 @@ const Navbar = ({
     title: "Sabin Cleaning Services",
   },
   contact = {
-    phone: { title: "+61 000 000 000", url: "#" },
+    phone: { title: "+61 449 897 958", url: "#" },
   },
 }) => {
   const [open, setOpen] = useState(false);
@@ -75,7 +75,7 @@ const Navbar = ({
             </Link>
             <div className="flex items-center gap-2">
               <a
-                href="tel:+61 000 000 000"
+                href="tel:+61449897958"
                 className="bg-[#79c043] p-2 rounded text-white"
               >
                 <Phone size={20} />

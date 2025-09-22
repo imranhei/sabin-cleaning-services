@@ -34,7 +34,7 @@ const Footer = () => {
               <span className="bg-[#79c043] p-2 rounded-full text-white flex items-center gap-1">
                 <Phone size={16} />
               </span>
-              <span className="font-bold">+61 000 000 000</span>
+              <span className="font-bold">+61 449 897 958</span>
             </div>
             <div className="flex items-center gap-2">
               <QuoteModal>
