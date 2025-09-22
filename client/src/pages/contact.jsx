@@ -69,12 +69,12 @@ const Contact = () => {
         </h1>
         <section className="">
           <div className="mx-auto text-center">
-            <p className="text-gray-600 text-lg mb-10">
+            <p className="text-gray-600 text-lg mb-6">
               Our dedicated professionals are here to provide top-notch cleaning
               services.
             </p>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2">
               {teamMembers.map((member, index) => (
                 <Card
                   key={index}

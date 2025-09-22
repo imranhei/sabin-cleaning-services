@@ -115,17 +115,17 @@ const Navbar = ({
                       ))}
                     </Accordion>
 
-                    <Button
+                    <a href="tel:+61449897958" className="w-full"><Button
                       asChild
                       variant="outline"
                       size="sm"
-                      className="pointer-events-none bg-[#79c043]"
+                      className="pointer-events-none bg-[#79c043] w-full"
                     >
-                      <a href="tel:+61449897958" className="font-semibold text-base text-white">
+                      <div className="font-semibold text-base text-white">
                         <Phone />
                         {contact.phone.title}
-                      </a>
-                    </Button>
+                      </div>
+                    </Button></a>
                   </div>
                 </div>
               )}
