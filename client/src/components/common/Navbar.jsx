@@ -121,10 +121,10 @@ const Navbar = ({
                       size="sm"
                       className="pointer-events-none bg-[#79c043]"
                     >
-                      <div className="font-semibold text-base text-white">
+                      <a href="tel:+61449897958" className="font-semibold text-base text-white">
                         <Phone />
                         {contact.phone.title}
-                      </div>
+                      </a>
                     </Button>
                   </div>
                 </div>

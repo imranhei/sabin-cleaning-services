@@ -58,13 +58,13 @@ const Contact = () => {
           A Part of
         </p>
         <p className="sm:text-3xl -mt-2 text-xl font-bold text-sky-800">
-          Sabin & Sidney Group Pty Ltd​
+          Sabin & Sidney Group Pty Ltd
         </p>
         <p className="sm:text-2xl font-semibold text-muted-foreground">
           ACN 682 730 196
         </p>
 
-        <h1 className="sm:text-3xl -mt-2 text-xl font-bold text-sky-800 text-center pt-6">
+        <h1 className="sm:text-3xl mt-4 text-xl font-bold text-sky-800 text-center pt-6">
           Meet our Team
         </h1>
         <section className="">
@@ -74,7 +74,7 @@ const Contact = () => {
               services.
             </p>
 
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2">
               {teamMembers.map((member, index) => (
                 <Card
                   key={index}
