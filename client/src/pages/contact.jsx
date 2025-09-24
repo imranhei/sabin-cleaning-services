@@ -48,7 +48,7 @@ const Contact = () => {
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Mail className="sm:size-6 size-4" />
-          sabincleaning@gmail.com
+          contact@sabincleaning.com.au
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground pb-4">
           <MapPin className="sm:size-6 size-4" />
