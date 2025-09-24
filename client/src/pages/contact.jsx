@@ -9,13 +9,13 @@ const teamMembers = [
     name: "Martin Long",
     role: "Commercial Cleaning",
     phone: "0437 416 688",
-    email: "xyz@gmail.com",
+    email: "commercial@sabincleaning.com.au",
   },
   {
     name: "Jakir Khan Zack",
     role: "End of Lease Cleaning",
     phone: "0483 841 166",
-    email: "abc@gmail.com",
+    email: "endoflease@sabincleaning.com.au",
   },
 ];
 
@@ -48,7 +48,7 @@ const Contact = () => {
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Mail className="sm:size-6 size-4" />
-          sabincleaning@gmail.com
+          contact@sabincleaning.com.au
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground pb-4">
           <MapPin className="sm:size-6 size-4" />
