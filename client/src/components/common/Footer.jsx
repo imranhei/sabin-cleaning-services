@@ -42,7 +42,7 @@ const Footer = () => {
                   Get a Quote
                 </Button>
               </QuoteModal>
-              <Facebook className="text-muted-foreground" />
+              <a href="https://www.facebook.com/sabincleaning" target="_blank"><Facebook className="text-muted-foreground" /></a>
               <Youtube className="text-muted-foreground" />
             </div>
           </div>
