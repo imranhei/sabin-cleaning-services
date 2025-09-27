@@ -6,6 +6,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const teamMembers = [
   {
+    name: "Sabina Sultana",
+    role: "Cleaning expert",
+    phone: "",
+    email: "endoflease@sabincleaning.com.au",
+  },
+  {
+    name: "Soma Ali",
+    role: "Cleaning Expert",
+    phone: "",
+    email: "endoflease@sabincleaning.com.au",
+  },
+  {
     name: "Martin Long",
     role: "Commercial Cleaning",
     phone: "0437 416 688",
@@ -87,10 +99,12 @@ const Contact = () => {
                     <p className="text-lg text-gray-500">{member.role}</p>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <PhoneCall className="w-4 h-4 text-sky-800" />
-                      <span>{member.phone}</span>
-                    </div>
+                    {member.phone && (
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <PhoneCall className="w-4 h-4 text-sky-800" />
+                        <span>{member.phone}</span>
+                      </div>
+                    )}
                     <div className="flex items-center gap-2 text-gray-700">
                       <MailCheck className="w-4 h-4 text-sky-800" />
                       <a
