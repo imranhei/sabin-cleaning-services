@@ -45,7 +45,7 @@ const Home = () => {
             Simplify Life.
           </h2>
           <h2 className="lg:text-7xl sm:text-5xl text-4xl font-bold">
-            Delegate Cleaning <span>(Coming Soon)</span>
+            Delegate Cleaning
           </h2>
           <div className="flex flex-wrap sm:gap-6 gap-4">
             {Commitment.map((item, index) => (
