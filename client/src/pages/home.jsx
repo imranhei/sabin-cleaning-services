@@ -173,7 +173,7 @@ const Home = () => {
                 <span className="bg-[#79c043] p-2 rounded-full text-white flex items-center gap-1">
                   <Phone size={16} />
                 </span>
-                <span className="font-bold">+61 449 897 958</span>
+                <span className="font-bold">+61 403 326 324</span>
               </div>
             </div>
           </div>

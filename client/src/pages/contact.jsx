@@ -20,7 +20,7 @@ const teamMembers = [
   {
     name: "Martin Long",
     role: "Commercial Cleaning",
-    phone: "0437 416 688",
+    phone: "0403 326 324",
     email: "commercial@sabincleaning.com.au",
   },
   {
@@ -56,7 +56,7 @@ const Contact = () => {
 
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Phone className="sm:size-6 size-4" />
-          +61 449 897 958
+          +61 403 326 324
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Mail className="sm:size-6 size-4" />
