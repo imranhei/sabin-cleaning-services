@@ -24,7 +24,7 @@ const Navbar = ({
     title: "Sabin Cleaning Services",
   },
   contact = {
-    phone: { title: "+61 403 326 324", url: "#" },
+    phone: { title: "+61 449 897 958", url: "#" },
   },
 }) => {
   const [open, setOpen] = useState(false);
