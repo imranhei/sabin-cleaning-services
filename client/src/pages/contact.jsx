@@ -64,7 +64,7 @@ const Contact = () => {
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Phone className="sm:size-6 size-4" />
-          483 841 166
+          0483 841 166
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Mail className="sm:size-6 size-4" />
@@ -106,7 +106,7 @@ const Contact = () => {
                     </CardTitle>
                     <p className="text-lg text-gray-500">{member.role}</p>
                     {member.experienceYears && (
-                      <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-sky-50 px-3 py-1 text-sm text-sky-800 w-fit">
+                      <div className="mt-2 mx-auto inline-flex items-center gap-2 rounded-full bg-sky-50 px-3 py-1 text-sm text-sky-800 w-fit">
                         <Award className="w-4 h-4" />
                         <span>{member.experienceYears} years of expertise in cleaning</span>
                       </div>
