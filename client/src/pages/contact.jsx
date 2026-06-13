@@ -1,32 +1,36 @@
 import React from "react";
 import { useBreadcrumbJson } from "@/hooks/useBreadcrumbJson";
 import RenderBreadcrumb from "@/components/common/RenderBreadcrumb";
-import { Mail, MailCheck, MapPin, Phone, PhoneCall } from "lucide-react";
+import { Mail, MailCheck, MapPin, Phone, PhoneCall, Award  } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const teamMembers = [
   {
     name: "Sabina Sultana",
     role: "Cleaning expert",
+    experienceYears: 5,
     phone: "",
     email: "endoflease@sabincleaning.com.au",
   },
   {
     name: "Soma Ali",
     role: "Cleaning Expert",
+    experienceYears: 5,
     phone: "",
     email: "endoflease@sabincleaning.com.au",
   },
   {
     name: "Martin Long",
     role: "Commercial Cleaning",
-    phone: "483 841 166",
+    experienceYears: 10,
+    phone: "0449 897 958",
     email: "commercial@sabincleaning.com.au",
   },
   {
     name: "Jakir Khan Zack",
     role: "End of Lease Cleaning",
-    phone: "483 841 166",
+    experienceYears: 10,
+    phone: "0449 897 958",
     email: "endoflease@sabincleaning.com.au",
   },
 ];
@@ -56,7 +60,11 @@ const Contact = () => {
 
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Phone className="sm:size-6 size-4" />
-          +61 483 841 166
+          0449 897 958
+        </div>
+        <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
+          <Phone className="sm:size-6 size-4" />
+          483 841 166
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Mail className="sm:size-6 size-4" />
@@ -97,6 +105,12 @@ const Contact = () => {
                       {member.name}
                     </CardTitle>
                     <p className="text-lg text-gray-500">{member.role}</p>
+                    {member.experienceYears && (
+                      <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-sky-50 px-3 py-1 text-sm text-sky-800 w-fit">
+                        <Award className="w-4 h-4" />
+                        <span>{member.experienceYears} years of expertise in cleaning</span>
+                      </div>
+                    )}
                   </CardHeader>
                   <CardContent className="space-y-3">
                     {member.phone && (
