@@ -34,7 +34,7 @@ const Footer = () => {
               <span className="bg-[#79c043] p-2 rounded-full text-white flex items-center gap-1">
                 <Phone size={16} />
               </span>
-              <span className="font-bold">0449 897 958</span>
+              <span className="font-bold">0405 315 758</span>
               <span className="bg-[#79c043] p-2 rounded-full text-white flex items-center gap-1">
                 <Phone size={16} />
               </span>
