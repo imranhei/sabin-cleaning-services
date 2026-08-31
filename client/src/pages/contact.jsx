@@ -64,7 +64,7 @@ const Contact = () => {
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Phone className="sm:size-6 size-4" />
-          0483 841 166
+          0420 971 891
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Mail className="sm:size-6 size-4" />
