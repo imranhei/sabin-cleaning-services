@@ -24,7 +24,7 @@ const Navbar = ({
     title: "Sabin Cleaning Services",
   },
   contact = {
-    phone: { title: "0405 315 758", url: "#" },
+    phone: { title: "0483 650 075", url: "#" },
   },
 }) => {
   const [open, setOpen] = useState(false);
@@ -75,7 +75,7 @@ const Navbar = ({
             </Link>
             <div className="flex items-center gap-2">
               <a
-                href="tel:0405 315 758"
+                href="tel:0483 650 075"
                 className="bg-[#79c043] p-2 rounded text-white"
               >
                 <Phone size={20} />
@@ -115,7 +115,7 @@ const Navbar = ({
                       ))}
                     </Accordion>
 
-                    <a href="tel:0405 315 758" className="w-full"><Button
+                    <a href="tel:0483 650 075" className="w-full"><Button
                       asChild
                       variant="outline"
                       size="sm"
