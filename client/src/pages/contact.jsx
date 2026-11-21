@@ -30,7 +30,7 @@ const teamMembers = [
     name: "Jakir Khan Zack",
     role: "End of Lease Cleaning",
     experienceYears: 10,
-    phone: "",
+    phone: "0483 650 075",
     email: "endoflease@sabincleaning.com.au",
   },
 ];
@@ -60,7 +60,7 @@ const Contact = () => {
 
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Phone className="sm:size-6 size-4" />
-          
+          0483 650 075
         </div>
         <div className="flex gap-2 items-center sm:text-2xl font-semibold text-muted-foreground">
           <Phone className="sm:size-6 size-4" />
